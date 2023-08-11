@@ -1,7 +1,6 @@
-#define STRLEN 50
-#define String int[STRLEN]
+const int STRLEN = 50;
 
-vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line) {
+vec4 Print(vec2 fragCoord, ivec2 LowerLeft, int[STRLEN] Line) {
     ivec2 Area = ivec2(STRLEN * 8, 8);
     ivec2 Pixel = ivec2(floor(fragCoord)) - LowerLeft;
     
@@ -84,10 +83,25 @@ void PRINT(int[50] texto) {
     Text += Print(FragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
 }
 
+/*
 int[50] plantilla = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+*/
+
 int[10] bienvenida = int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o);
+
+/*
+int[50] a_Linea(const int tamagno, int[tamagno] texto) {
+    int[50] plantilla = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+    
+    
+    
+    return plantilla; //int[50];
+}
+*/
 
 //antes de las variables no coloco NADA
 void mainImage(out vec4 fragColor, vec2 fragCoord) {
@@ -101,7 +115,7 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     for (int i = 0; i < 50; i++) {
         plantilla[i] = -1;
     }
-    */
+    
     
     //esto subprogramado
     for (int i = 0; i < 10; i++) {
@@ -109,7 +123,7 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     }
     
     PRINT(plantilla);
-       
+    */   
     //int[10] -> int[50]
     //PRINT(int[50](int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o)));
       
