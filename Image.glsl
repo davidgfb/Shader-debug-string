@@ -1,33 +1,31 @@
 #define STRLEN 50
 #define String int[STRLEN]
-vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line)
-{
+
+vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line) {
     ivec2 Area = ivec2(STRLEN * 8, 8);
     ivec2 Pixel = ivec2(floor(fragCoord)) - LowerLeft;
-    if (Pixel.x >= 0 && Pixel.y >= 0 && Pixel.x < Area.x && Pixel.y < Area.y)
-    {
+    
+    if (Pixel.x >= 0 && Pixel.y >= 0 && Pixel.x < Area.x && Pixel.y < Area.y) {
         int GlyphsPerRow = int(floor(iResolution.x)) / 8;
         int GlyphIndex = Line[Pixel.x / 8];
-        if (GlyphIndex >= 0)
-        {
+        
+        if (GlyphIndex >= 0) {
         	ivec2 Glyph = ivec2(GlyphIndex % GlyphsPerRow, GlyphIndex / GlyphsPerRow);
 			vec2 UV = vec2(0.5 + vec2(Glyph * 8 + (Pixel % 8))) / iResolution.xy;
-        	return vec4(texture(iChannel0, UV).rgb, 1.0);
+        	
+            return vec4(texture(iChannel0, UV).rgb, 1.0);
         }
     }
+    
 	return vec4(0.0);
 }
  
 /* 
 //int a[] = int[](3, 4, 4, 2);
 //int a = 0;
-
-int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 */
 
-//tiene q tener 50 enteros x ancho max. Y si defino todos? _numeros = _0123456789
+//tiene q tener 50 enteros x STRLEN. Y si defino todos? _numeros = _0123456789
 #define _0 16 
 #define _1 17
 #define _2 18
@@ -112,18 +110,36 @@ void once() {
 }
 */
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
-{  
-    float SlugWidth = float(STRLEN) * 8.0;
+#define lineas linea3, linea2, linea1, linea
+
+//int i = 0; //_0-9 16-25
+
+/*
+int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+*/
+
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
+    float SlugWidth = 8.0 * float(STRLEN);
     float Scale = max(round(iResolution.x / SlugWidth), 1.0);
        
     int Cursor = 1;
     vec4 Text = vec4(0.0);
     
+    /*
+    for (int i = 0, i < 4; i++) {
+        PRINT(lineas[i]);
+    }
+    */
+    
+    ///*
     PRINT(linea3);    
     PRINT(linea2);       
     PRINT(linea1);   
-    PRINT(linea);    
-        
-    fragColor.rgb = mix(vec3(fragCoord.x / iResolution.x * 0.5 + 0.5), Text.rgb, Text.a);
+    PRINT(linea);
+    //PRINT(LINE_14);
+    //*/
+    
+    fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
