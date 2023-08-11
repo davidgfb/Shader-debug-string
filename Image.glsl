@@ -73,30 +73,32 @@ int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o,
 //shadertoy no permite array de array por ser GLSL < 3.1
 //int[5][50] texto = int[5][50](simbolos, minusculas, mayusculas, digitos, bienvenida);
 
-vec4 PRINT(int[50] texto, vec4 Text, vec2 fragCoord, float Scale, int Cursor) {
-    Text += Print(fragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
+vec4 Text;
+vec2 FragCoord; //
+float Scale;
+int Cursor = 1;
+
+void PRINT(int[50] texto) { //vec4 Text, vec2 fragCoord, float Scale, int Cursor) {
+    Text += Print(FragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
     
-    return Text;
+    //return Text;
 }
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
+void mainImage(out vec4 fragColor, vec2 fragCoord) {
     float SlugWidth = 8.0 * float(STRLEN);
-    float Scale = max(round(iResolution.x / SlugWidth), 1.0);
-       
-    int Cursor = 1;
-    vec4 Text = vec4(0.0);
+    
+    FragCoord = fragCoord;
+    Scale = max(round(iResolution.x / SlugWidth), 1.0);      
+    Text = vec4(0.0);
     
     //int[10] -> int[50]
     //PRINT(int[50](int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o)));
      
-    Text = PRINT(simbolos, Text, fragCoord, Scale, Cursor);
-    
-    /*
-    PRINT(minusculas)
+    PRINT(simbolos); //, Text, fragCoord, Scale, Cursor);    
+    PRINT(minusculas);
     PRINT(mayusculas);
     PRINT(digitos);
     PRINT(bienvenida); 
-    */
     
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
