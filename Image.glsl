@@ -26,68 +26,15 @@ vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line) {
 */
 
 //tiene q tener 50 enteros x STRLEN. Y si defino todos? _numeros = _0123456789
-int _0 = 16; 
-int _1 = 17;
-int _2 = 18;
-int _3 = 19;
-int _4 = 20;
-int _5 = 21;
-int _6 = 22;
-int _7 = 23;
-int _8 = 24;
-int _9 = 25;
-int _A = 33; 
-int _B = 34;
-int _C = 35;
-int _D = 36; 
-int _E = 37;
-int _F = 38;
-int _G = 39; 
-int _H = 40;
-int _I = 41;
-int _J = 42; 
-int _K = 43;
-int _L = 44;
-int _M = 45; 
-int _N = 46;
-int _O = 47;
-int _P = 48;
-int _Q = 49;
-int _R = 50;
-int _S = 51;
-int _T = 52;
-int _U = 53;
-int _V = 54;
-int _W = 55;
-int _X = 56;
-int _Y = 57;
-int _Z = 58;
-int _a = 65;
-int _b = 66;
-int _c = 67;
-int _d = 68;
-int _e = 69;
-int _f = 70;
-int _g = 71;
-int _h = 72;
-int _i = 73;
-int _j = 74;
-int _k = 75;
-int _l = 76;
-int _m = 77;
-int _n = 78;
-int _o = 79;
-int _p = 80;
-int _q = 81;
-int _r = 82;
-int _s = 83;
-int _t = 84;
-int _u = 85;
-int _v = 86;
-int _w = 87;
-int _x = 88;
-int _y = 89;
-int _z = 90;
+//letras[A], numeros[0]
+const int _0 = 16, _1 = 17, _2 = 18, _3 = 19, _4 = 20, _5 = 21, _6 = 22, _7 = 23, 
+    _8 = 24, _9 = 25;
+const int _A = 33, _B = 34, _C = 35, _D = 36, _E = 37, _F = 38, _G = 39, _H = 40, 
+    _I = 41, _J = 42, _K = 43, _L = 44, _M = 45, _N = 46, _O = 47, _P = 48, _Q = 49, 
+    _R = 50, _S = 51, _T = 52, _U = 53, _V = 54, _W = 55, _X = 56, _Y = 57, _Z = 58;
+const int _a = 65, _b = 66, _c = 67, _d = 68, _e = 69, _f = 70, _g = 71, _h = 72, 
+    _i = 73, _j = 74, _k = 75, _l = 76, _m = 77, _n = 78, _o = 79, _p = 80, _q = 81, 
+    _r = 82, _s = 83, _t = 84, _u = 85, _v = 86, _w = 87, _x = 88, _y = 89, _z = 90;
 
 /*
 a partir de numeros altos se repite:
@@ -115,15 +62,9 @@ void once() {
 
 //int i = 0; //_0-9 16-25
 
-///*
-int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o, 
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-
-/*#define texto LINE_14
-*/
-
-#define bienvenida _B, _i, _e, _n, _v, _e, _n, _i, _d, _o, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
     float SlugWidth = 8.0 * float(STRLEN);
@@ -132,7 +73,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     int Cursor = 1;
     vec4 Text = vec4(0.0);
     
-    PRINT(LINE_14); //bienvenida);
+    PRINT(bienvenida); 
     
     //PRINT(for (int i = 0; i < 50; i++) LINE_14[i]);
     
