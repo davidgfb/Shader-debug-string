@@ -54,9 +54,6 @@ int[50] simbolos = int[50](0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
     27, 28, 29, 30, 31, 32,  59, 60, 61, 62, 63, 64,  91, 92, 93, 94, -1, -1, -1, -1, 
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 
-//string convierte define a array de int
-#define PRINT(LINE) Text += Print(fragCoord / Scale, ivec2(0, 8 * Cursor++), LINE);
-
 /*
 void once() {
     int LINE_14_1[50] = LINE_14;
@@ -67,16 +64,20 @@ void once() {
 }
 */
 
-#define lineas linea3, linea2, linea1, linea
-
 //int i = 0; //_0-9 16-25
 
 int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o, 
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 
-//shadertoy no permite array de array por ser < 3.1
+//shadertoy no permite array de array por ser GLSL < 3.1
 //int[5][50] texto = int[5][50](simbolos, minusculas, mayusculas, digitos, bienvenida);
+
+vec4 PRINT(int[50] texto, vec4 Text, vec2 fragCoord, float Scale, int Cursor) {
+    Text += Print(fragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
+    
+    return Text;
+}
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
     float SlugWidth = 8.0 * float(STRLEN);
@@ -85,11 +86,17 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     int Cursor = 1;
     vec4 Text = vec4(0.0);
     
-    PRINT(simbolos);
+    //int[10] -> int[50]
+    //PRINT(int[50](int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o)));
+     
+    Text = PRINT(simbolos, Text, fragCoord, Scale, Cursor);
+    
+    /*
     PRINT(minusculas)
     PRINT(mayusculas);
     PRINT(digitos);
     PRINT(bienvenida); 
-        
+    */
+    
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
