@@ -41,16 +41,6 @@ a partir de numeros altos se repite:
 0-11 = 100-111, 0-4 = 95-99
 */
 
-/*
-void once() {
-    int LINE_14_1[50] = LINE_14;
-
-    for (int i = 0; i < 50; i++) {
-        LINE_14_1(i) = -1;
-    }
-}
-*/
-
 //int i = 0; //_0-9 16-25
 
 //shadertoy no permite array de array por ser GLSL < 3.1
@@ -64,14 +54,6 @@ int Cursor = 1;
 void PRINT(int[50] texto) { 
     Text += Print(FragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
 }
-
-/*
-int[50] a_Linea(const int tamagno, int[tamagno] texto) {
-    int[50] plantilla;    
-    
-    return plantilla; //int[50];
-}
-*/
 
 //antes de las variables no coloco NADA
 void mainImage(out vec4 fragColor, vec2 fragCoord) {
