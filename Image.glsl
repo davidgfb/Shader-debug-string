@@ -77,8 +77,16 @@ int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 #define _O 47
 #define _P 48
 #define _Q 49
+#define _R 50
+#define _S 51
+#define _T 52
 
-#define LINE_14 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, 26, 27, 28, 29, 30, 31, 32, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q
+#define linea1 _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
+
+/*
+#define linea 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, 26, 27, 28, 29, 30, 31, 32, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q
+#define linea1 _R, _S, _T, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, 26, 27, 28, 29, 30, 31, 32, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q
+*/
 
 #define PRINT(LINE) Text += Print(fragCoord / Scale, ivec2(0, (Cursor++) * 8), String(LINE));
 
@@ -103,7 +111,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     //PRINT(text);
     
     
-    PRINT(LINE_14);
+    PRINT(linea1);
+    //PRINT(linea);
     
     /*
     PRINT(LINE_14);
