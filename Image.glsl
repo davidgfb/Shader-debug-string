@@ -120,6 +120,8 @@ int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 */
 
+#define bienvenida _B, _i, _e, _n, _v, _e, _n, _i, _d, _o, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
+
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
     float SlugWidth = 8.0 * float(STRLEN);
     float Scale = max(round(iResolution.x / SlugWidth), 1.0);
@@ -133,13 +135,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     }
     */
     
-    ///*
-    PRINT(linea3);    
-    PRINT(linea2);       
-    PRINT(linea1);   
-    PRINT(linea);
-    //PRINT(LINE_14);
-    //*/
+    PRINT(bienvenida);
     
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
