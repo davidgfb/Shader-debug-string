@@ -49,12 +49,19 @@ int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 */
 
-//tiene q tener 50 enteros por algun motivo
+//tiene q tener 50 enteros por algun motivo. Y si defino todos? _numeros = _0123456789
 #define _0 16
 #define _1 17
 #define _2 18
 #define _3 19
-#define LINE_14 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, _0, _1, _2, _3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
+#define _4 20
+#define _5 21
+#define _6 22
+#define _7 23
+#define _8 24
+#define _9 25
+
+#define LINE_14 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 
 #define PRINT(LINE) Text += Print(fragCoord / Scale, ivec2(0, (Cursor++) * 8), String(LINE));
 
