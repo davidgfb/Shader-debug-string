@@ -69,8 +69,9 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
         plantilla[i] = -1;
     }
     
-    int[50] plantilla1 = plantilla; //
-    
+    int[50] plantilla1 = plantilla, //
+        plantilla2 = plantilla;
+        
     int[10] bienvenida = int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o),
         digitos = int[10](_0, _1, _2, _3, _4, _5, _6, _7, _8, _9);
     int[26] mayusculas = int[26](_A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, 
@@ -83,40 +84,27 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     //esto subprogramado (si se puede pasar array de tamaño variable...)
     for (int i = 0; i < 10; i++) {
         plantilla1[i] = bienvenida[i];
+        plantilla2[i] = digitos[i];
     }
     
     PRINT(plantilla1);
+    PRINT(plantilla2);
     
-    //********************************
+    //**************************
     plantilla1 = plantilla;
-    
-    for (int i = 0; i < 10; i++) {
-        plantilla1[i] = digitos[i];
-    }
-    
-    PRINT(plantilla1);
-    
-    //********************************
-    plantilla1 = plantilla;
-    
+    plantilla2 = plantilla;
+        
     for (int i = 0; i < 26; i++) { //26!
         plantilla1[i] = mayusculas[i];
+        plantilla2[i] = minusculas[i];
     }
     
     PRINT(plantilla1);
-    
-    //********************************
+    PRINT(plantilla2);
+
+    //**************************
     plantilla1 = plantilla;
-    
-    for (int i = 0; i < 26; i++) { //26!
-        plantilla1[i] = minusculas[i];
-    }
-    
-    PRINT(plantilla1);
-    
-    //********************************
-    plantilla1 = plantilla;
-    
+        
     for (int i = 0; i < 33; i++) { //26!
         plantilla1[i] = simbolos[i];
     }
