@@ -30,16 +30,17 @@ int GLYPHS[190] = int[190](0xFFFFFFFF, 0xFFFFFFFF, 0xF3FFF3F3, 0xF3F3FFFF, 0xFFF
 
 void mainImage(out vec4 fragColor, vec2 fragCoord) {
     ivec2 Coord = ivec2(floor(fragCoord));
-    int GlyphsPerRow = int(floor(iResolution.x)) / 8;
-    int RowsNeeded = int(ceil(95.0 / float(GlyphsPerRow)));
-    ivec2 Cell = (Coord / 8) % ivec2(GlyphsPerRow, RowsNeeded);
+    int GlyphsPerRow = int(floor(iResolution.x)) / 8, 
+        RowsNeeded = int(ceil(95.0 / float(GlyphsPerRow)));
+    
+    ivec2 Cell = (Coord / 8) % ivec2(GlyphsPerRow, RowsNeeded), 
+        Pixel = ivec2(Coord.x % 8, Coord.y % 8);
     int CharCode = (Cell.y * GlyphsPerRow + Cell.x) % 95;
-    ivec2 Pixel = ivec2(Coord.x % 8, Coord.y % 8);
+    
     Pixel.y = (7 - Pixel.y) % 4;
-    int GlyphHalf = (Coord.y / 4) % 2;
-    int GlyphIndex = CharCode * 2 + GlyphHalf;
-    int Glyph = GLYPHS[GlyphIndex];
-    int Mask = 1 << (Pixel.y * 8 + Pixel.x);
+    
+    int GlyphHalf = (Coord.y / 4) % 2, GlyphIndex = CharCode * 2 + GlyphHalf, 
+        Glyph = GLYPHS[GlyphIndex], Mask = 1 << (Pixel.y * 8 + Pixel.x);
     
     if ((Glyph & Mask) == 0) {
        	fragColor = vec4(0.0, 0.0, 0.0, 1.0);
