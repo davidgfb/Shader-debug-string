@@ -75,6 +75,9 @@ int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 
+//shadertoy no permite array de array por ser < 3.1
+//int[5][50] texto = int[5][50](simbolos, minusculas, mayusculas, digitos, bienvenida);
+
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {  
     float SlugWidth = 8.0 * float(STRLEN);
     float Scale = max(round(iResolution.x / SlugWidth), 1.0);
@@ -87,8 +90,6 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     PRINT(mayusculas);
     PRINT(digitos);
     PRINT(bienvenida); 
-    
-    //PRINT(for (int i = 0; i < 50; i++) LINE_14[i]);
-    
+        
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
