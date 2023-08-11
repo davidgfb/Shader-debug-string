@@ -40,18 +40,6 @@ const int _a = 65, _b = 66, _c = 67, _d = 68, _e = 69, _f = 70, _g = 71, _h = 72
 a partir de numeros altos se repite:
 0-11 = 100-111, 0-4 = 95-99
 */
-int[50] digitos = int[50](_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, -1, -1, -1, -1, -1, 
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-int[50] mayusculas = int[50](_A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O,
-    _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-int[50] minusculas = int[50](_a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o,
-    _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-int[50] simbolos = int[50](0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,  26, 
-    27, 28, 29, 30, 31, 32,  59, 60, 61, 62, 63, 64,  91, 92, 93, 94, -1, -1, -1, -1, 
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 
 /*
 void once() {
@@ -64,12 +52,6 @@ void once() {
 */
 
 //int i = 0; //_0-9 16-25
-
-/*
-int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o, 
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-*/
 
 //shadertoy no permite array de array por ser GLSL < 3.1
 //int[5][50] texto = int[5][50](simbolos, minusculas, mayusculas, digitos, bienvenida);
@@ -84,20 +66,8 @@ void PRINT(int[50] texto) {
 }
 
 /*
-int[50] plantilla = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-*/
-
-int[10] bienvenida = int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o);
-
-/*
 int[50] a_Linea(const int tamagno, int[tamagno] texto) {
-    int[50] plantilla = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-    
-    
+    int[50] plantilla;    
     
     return plantilla; //int[50];
 }
@@ -111,29 +81,68 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     Scale = max(round(iResolution.x / SlugWidth), 1.0);      
     Text = vec4(0.0);
     
-    /*
+    int[50] plantilla;
+        
     for (int i = 0; i < 50; i++) {
         plantilla[i] = -1;
     }
     
+    int[50] plantilla1 = plantilla; //
     
-    //esto subprogramado
+    int[10] bienvenida = int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o),
+        digitos = int[10](_0, _1, _2, _3, _4, _5, _6, _7, _8, _9);
+    int[26] mayusculas = int[26](_A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, 
+        _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z),
+        minusculas = int[26](_a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, 
+        _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z); 
+    int[33] simbolos = int[33](0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,  
+        26, 27, 28, 29, 30, 31, 32,  59, 60, 61, 62, 63, 64,  91, 92, 93, 94);
+        
+    //esto subprogramado (si se puede pasar array de tamaño variable...)
     for (int i = 0; i < 10; i++) {
-        plantilla[i] = bienvenida[i];
+        plantilla1[i] = bienvenida[i];
     }
     
-    PRINT(plantilla);
-    */   
+    PRINT(plantilla1);
+    
+    //********************************
+    plantilla1 = plantilla;
+    
+    for (int i = 0; i < 10; i++) {
+        plantilla1[i] = digitos[i];
+    }
+    
+    PRINT(plantilla1);
+    
+    //********************************
+    plantilla1 = plantilla;
+    
+    for (int i = 0; i < 26; i++) { //26!
+        plantilla1[i] = mayusculas[i];
+    }
+    
+    PRINT(plantilla1);
+    
+    //********************************
+    plantilla1 = plantilla;
+    
+    for (int i = 0; i < 26; i++) { //26!
+        plantilla1[i] = minusculas[i];
+    }
+    
+    PRINT(plantilla1);
+    
+    //********************************
+    plantilla1 = plantilla;
+    
+    for (int i = 0; i < 33; i++) { //26!
+        plantilla1[i] = simbolos[i];
+    }
+    
+    PRINT(plantilla1);
+    
     //int[10] -> int[50]
     //PRINT(int[50](int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o)));
-      
-    /*
-    PRINT(simbolos);   
-    PRINT(minusculas);
-    PRINT(mayusculas);
-    PRINT(digitos);
-    PRINT(bienvenida); 
-    */
     
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
