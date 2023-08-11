@@ -66,9 +66,11 @@ void once() {
 
 //int i = 0; //_0-9 16-25
 
+/*
 int bienvenida[50] = int[50](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o, 
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+*/
 
 //shadertoy no permite array de array por ser GLSL < 3.1
 //int[5][50] texto = int[5][50](simbolos, minusculas, mayusculas, digitos, bienvenida);
@@ -78,12 +80,16 @@ vec2 FragCoord; //
 float Scale;
 int Cursor = 1;
 
-void PRINT(int[50] texto) { //vec4 Text, vec2 fragCoord, float Scale, int Cursor) {
+void PRINT(int[50] texto) { 
     Text += Print(FragCoord / Scale, ivec2(0, 8 * Cursor++), texto);
-    
-    //return Text;
 }
 
+int[50] plantilla = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+int[10] bienvenida = int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o);
+
+//antes de las variables no coloco NADA
 void mainImage(out vec4 fragColor, vec2 fragCoord) {
     float SlugWidth = 8.0 * float(STRLEN);
     
@@ -91,14 +97,29 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     Scale = max(round(iResolution.x / SlugWidth), 1.0);      
     Text = vec4(0.0);
     
+    /*
+    for (int i = 0; i < 50; i++) {
+        plantilla[i] = -1;
+    }
+    */
+    
+    //esto subprogramado
+    for (int i = 0; i < 10; i++) {
+        plantilla[i] = bienvenida[i];
+    }
+    
+    PRINT(plantilla);
+       
     //int[10] -> int[50]
     //PRINT(int[50](int[10](_B, _i, _e, _n, _v, _e, _n, _i, _d, _o)));
-     
-    PRINT(simbolos); //, Text, fragCoord, Scale, Cursor);    
+      
+    /*
+    PRINT(simbolos);   
     PRINT(minusculas);
     PRINT(mayusculas);
     PRINT(digitos);
     PRINT(bienvenida); 
+    */
     
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
