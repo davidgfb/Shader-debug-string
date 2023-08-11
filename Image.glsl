@@ -92,13 +92,14 @@ vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line) {
 /*
 a partir de numeros altos se repite:
 0-11 = 100-111, 0-4 = 95-99
-*/
 #define linea _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 #define linea1 _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 #define linea2 _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 #define linea3 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,  26, 27, 28, 29, 30, 31, 32,  59, 60, 61, 62, 63, 64,  91, 92, 93, 94, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
+*/
 
-#define PRINT(LINE) Text += Print(fragCoord / Scale, ivec2(0, (Cursor++) * 8), String(LINE));
+//string convierte define a array de int
+#define PRINT(LINE) Text += Print(fragCoord / Scale, ivec2(0, 8 * Cursor++), LINE);
 
 /*
 void once() {
@@ -114,10 +115,12 @@ void once() {
 
 //int i = 0; //_0-9 16-25
 
-/*
+///*
 int LINE_14[50] = int[50](-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+
+/*#define texto LINE_14
 */
 
 #define bienvenida _B, _i, _e, _n, _v, _e, _n, _i, _d, _o, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
@@ -129,13 +132,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     int Cursor = 1;
     vec4 Text = vec4(0.0);
     
-    /*
-    for (int i = 0, i < 4; i++) {
-        PRINT(lineas[i]);
-    }
-    */
+    PRINT(LINE_14); //bienvenida);
     
-    PRINT(bienvenida);
+    //PRINT(for (int i = 0; i < 50; i++) LINE_14[i]);
     
     fragColor.rgb = mix(vec3((fragCoord.x / iResolution.x + 1.0) / 2.0), Text.rgb, Text.a);
 }
