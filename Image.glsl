@@ -1,22 +1,22 @@
 const int STRLEN = 50;
 
 vec4 Print(vec2 fragCoord, ivec2 LowerLeft, int[STRLEN] Line) {
-    ivec2 Area = ivec2(STRLEN * 8, 8);
-    ivec2 Pixel = ivec2(floor(fragCoord)) - LowerLeft;
+    ivec2 Area = ivec2(8 * STRLEN , 8), Pixel = ivec2(floor(fragCoord)) - LowerLeft;   
+    vec4 salida = vec4(0.0);
     
     if (Pixel.x >= 0 && Pixel.y >= 0 && Pixel.x < Area.x && Pixel.y < Area.y) {
-        int GlyphsPerRow = int(floor(iResolution.x)) / 8;
-        int GlyphIndex = Line[Pixel.x / 8];
+        int GlyphsPerRow = int(floor(iResolution.x)) / 8, 
+            GlyphIndex = Line[Pixel.x / 8];
         
         if (GlyphIndex >= 0) {
         	ivec2 Glyph = ivec2(GlyphIndex % GlyphsPerRow, GlyphIndex / GlyphsPerRow);
 			vec2 UV = vec2(0.5 + vec2(Glyph * 8 + (Pixel % 8))) / iResolution.xy;
         	
-            return vec4(texture(iChannel0, UV).rgb, 1.0);
+            salida = vec4(texture(iChannel0, UV).rgb, 1.0);
         }
     }
     
-	return vec4(0.0);
+	return salida;
 }
  
 //int a[] = int[](3, 4, 4, 2);
