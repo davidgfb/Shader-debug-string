@@ -26,68 +26,68 @@ vec4 Print(vec2 fragCoord, ivec2 LowerLeft, String Line) {
 */
 
 //tiene q tener 50 enteros x STRLEN. Y si defino todos? _numeros = _0123456789
-#define _0 16 
-#define _1 17
-#define _2 18
-#define _3 19
-#define _4 20
-#define _5 21
-#define _6 22
-#define _7 23
-#define _8 24
-#define _9 25
-#define _A 33 
-#define _B 34
-#define _C 35
-#define _D 36 
-#define _E 37
-#define _F 38
-#define _G 39 
-#define _H 40
-#define _I 41
-#define _J 42 
-#define _K 43
-#define _L 44
-#define _M 45 
-#define _N 46
-#define _O 47
-#define _P 48
-#define _Q 49
-#define _R 50
-#define _S 51
-#define _T 52
-#define _U 53
-#define _V 54
-#define _W 55
-#define _X 56
-#define _Y 57
-#define _Z 58
-#define _a 65
-#define _b 66
-#define _c 67
-#define _d 68
-#define _e 69
-#define _f 70
-#define _g 71
-#define _h 72
-#define _i 73
-#define _j 74
-#define _k 75
-#define _l 76
-#define _m 77
-#define _n 78
-#define _o 79
-#define _p 80
-#define _q 81
-#define _r 82
-#define _s 83
-#define _t 84
-#define _u 85
-#define _v 86
-#define _w 87
-#define _x 88
-#define _y 89
-#define _z 90
+int _0 = 16; 
+int _1 = 17;
+int _2 = 18;
+int _3 = 19;
+int _4 = 20;
+int _5 = 21;
+int _6 = 22;
+int _7 = 23;
+int _8 = 24;
+int _9 = 25;
+int _A = 33; 
+int _B = 34;
+int _C = 35;
+int _D = 36; 
+int _E = 37;
+int _F = 38;
+int _G = 39; 
+int _H = 40;
+int _I = 41;
+int _J = 42; 
+int _K = 43;
+int _L = 44;
+int _M = 45; 
+int _N = 46;
+int _O = 47;
+int _P = 48;
+int _Q = 49;
+int _R = 50;
+int _S = 51;
+int _T = 52;
+int _U = 53;
+int _V = 54;
+int _W = 55;
+int _X = 56;
+int _Y = 57;
+int _Z = 58;
+int _a = 65;
+int _b = 66;
+int _c = 67;
+int _d = 68;
+int _e = 69;
+int _f = 70;
+int _g = 71;
+int _h = 72;
+int _i = 73;
+int _j = 74;
+int _k = 75;
+int _l = 76;
+int _m = 77;
+int _n = 78;
+int _o = 79;
+int _p = 80;
+int _q = 81;
+int _r = 82;
+int _s = 83;
+int _t = 84;
+int _u = 85;
+int _v = 86;
+int _w = 87;
+int _x = 88;
+int _y = 89;
+int _z = 90;
 
 /*
 a partir de numeros altos se repite:
