@@ -1,15 +1,3 @@
-// I modified Hamneggs shader to use integer arithmetic, arrays and branches when
-// appropiate - iq
-
-
-// Simple Bitmap Text by Gerard Geer
-// 
-// Essentially a "hmm, how does that work?" educational rewrite of P_Malin's text renderer:
-// https://www.shadertoy.com/view/4sBSWW
-// Each character is a 4x5 bitmap encoded into a float, where each hex digit convieniently
-// represents one row.
-// License: Creative Commons CC0 1.0 Universal (CC-0) 
-
 const int font[] = int[](
  0x69f99, 0x79797, 0xe111e, 0x79997, 0xf171f, 0xf1711, 0xe1d96, 0x99f99, 
  0xf444f, 0x88996, 0x95159, 0x1111f, 0x9f999, 0x9bd99, 0x69996, 0x79971,
@@ -19,63 +7,16 @@ const int font[] = int[](
  0x0a500, 0x02720, 0x0f0f0, 0x08421, 0x33303, 0x69404, 0x00032, 0x00002,
  0x55000, 0x00000, 0x00202, 0x42224, 0x24442);
 
-#define CH_A 0
-#define CH_B 1
-#define CH_C 2
-#define CH_D 3
-#define CH_E 4
-#define CH_F 5
-#define CH_G 6
-#define CH_H 7
-#define CH_I 8
-#define CH_J 9
-#define CH_K 10
-#define CH_L 11
-#define CH_M 12
-#define CH_N 13
-#define CH_O 14
-#define CH_P 15
-#define CH_Q 16
-#define CH_R 17
-#define CH_S 18
-#define CH_T 19
-#define CH_U 20
-#define CH_V 21
-#define CH_W 22
-#define CH_X 23
-#define CH_Y 24
-#define CH_Z 25
-#define CH_0 26
-#define CH_1 27
-#define CH_2 28
-#define CH_3 29
-#define CH_4 30
-#define CH_5 31
-#define CH_6 32
-#define CH_7 33
-#define CH_8 34
-#define CH_9 35
-#define CH_APST 36
-#define CH_PI   37
-#define CH_UNDS 38
-#define CH_HYPH 39
-#define CH_TILD 40
-#define CH_PLUS 41
-#define CH_EQUL 42
-#define CH_SLSH 43
-#define CH_EXCL 44
-#define CH_QUES 45
-#define CH_COMM 46
-#define CH_FSTP 47
-#define CH_QUOT 48 
-#define CH_BLNK 49
-#define CH_COLN 50
-#define CH_LPAR 51
-#define CH_RPAR 52
+int CH_A = 0, CH_B = 1, CH_C = 2, CH_D = 3, CH_E = 4, CH_F = 5, CH_G = 6, CH_H = 7,
+    CH_I = 8, CH_J = 9, CH_K = 10, CH_L = 11, CH_M = 12, CH_N = 13, CH_O = 14,
+    CH_P = 15, CH_Q = 16, CH_R = 17, CH_S = 18, CH_T = 19, CH_U = 20, CH_V = 21,
+    CH_W = 22, CH_X = 23, CH_Y = 24, CH_Z = 25, CH_0 = 26, CH_1 = 27, CH_2 = 28,
+    CH_3 = 29, CH_4 = 30, CH_5 = 31, CH_6 = 32, CH_7 = 33, CH_8 = 34, CH_9 = 35,
+    CH_APST = 36, CH_PI = 37, CH_UNDS = 38, CH_HYPH = 39, CH_TILD = 40, CH_PLUS = 41,
+    CH_EQUL = 42, CH_SLSH = 43, CH_EXCL = 44, CH_QUES = 45, CH_COMM = 46, CH_FSTP = 47,
+    CH_QUOT = 48, CH_BLNK = 49, CH_COLN = 50, CH_LPAR = 51, CH_RPAR = 52;
 
 const ivec2 MAP_SIZE = ivec2(4,5);
-
-
 
 /*
 	Draws a character, given its encoded value, a position, size and
