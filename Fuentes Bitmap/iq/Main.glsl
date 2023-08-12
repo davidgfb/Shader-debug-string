@@ -1,17 +1,17 @@
-const int CH_A = 0x69f99, CH_B = 0x79797, CH_C = 0xe111e, CH_D = 0x79997, 
-    CH_E = 0xf171f, CH_F = 0xf1711, CH_G = 0xe1d96, CH_H = 0x99f99, CH_I = 0xf444f, 
-    CH_J = 0x88996, CH_K = 0x95159, CH_L = 0x1111f, CH_M = 0x9f999, CH_N = 0x9bd99, 
-    CH_O = 0x69996, CH_P = 0x79971, CH_Q = 0x69b5a, CH_R = 0x79759, CH_S = 0xe1687, 
-    CH_T = 0xf4444, CH_U = 0x99996, CH_V = 0x999a4, CH_W = 0x999f9, CH_X = 0x99699, 
-    CH_Y = 0x99e8e, CH_Z = 0xf843f, CH_0 = 0x6bd96, CH_1 = 0x46444, CH_2 = 0x6942f, 
-    CH_3 = 0x69496, CH_4 = 0x99f88, CH_5 = 0xf1687, CH_6 = 0x61796, CH_7 = 0xf8421, 
-    CH_8 = 0x69696, CH_9 = 0x69e84, CH_APST = 0x66400, CH_PI = 0x0faa9, 
-    CH_UNDS = 0x0000f, CH_HYPH = 0x00600, CH_TILD = 0x0a500, CH_PLUS = 0x02720, 
-    CH_EQUL = 0x0f0f0, CH_SLSH = 0x08421, CH_EXCL = 0x33303, CH_QUES = 0x69404, 
-    CH_COMM = 0x00032, CH_FSTP = 0x00002, CH_QUOT = 0x55000, CH_BLNK = 0x00000, 
-    CH_COLN = 0x00202, CH_LPAR = 0x42224, CH_RPAR = 0x24442;
+const int _A = 0x69f99, _B = 0x79797, _C = 0xe111e, _D = 0x79997, 
+    _E = 0xf171f, _F = 0xf1711, _G = 0xe1d96, _H = 0x99f99, _I = 0xf444f, 
+    _J = 0x88996, _K = 0x95159, _L = 0x1111f, _M = 0x9f999, _N = 0x9bd99, 
+    _O = 0x69996, _P = 0x79971, _Q = 0x69b5a, _R = 0x79759, _S = 0xe1687, 
+    _T = 0xf4444, _U = 0x99996, _V = 0x999a4, _W = 0x999f9, _X = 0x99699, 
+    _Y = 0x99e8e, _Z = 0xf843f, _0 = 0x6bd96, _1 = 0x46444, _2 = 0x6942f, 
+    _3 = 0x69496, _4 = 0x99f88, _5 = 0xf1687, _6 = 0x61796, _7 = 0xf8421, 
+    _8 = 0x69696, _9 = 0x69e84, _APST = 0x66400, _PI = 0x0faa9, 
+    _UNDS = 0x0000f, _HYPH = 0x00600, _TILD = 0x0a500, _PLUS = 0x02720, 
+    _EQUL = 0x0f0f0, _SLSH = 0x08421, _EXCL = 0x33303, _QUES = 0x69404, 
+    _COMM = 0x00032, _FSTP = 0x00002, _QUOT = 0x55000, _BLNK = 0x00000, 
+    _COLN = 0x00202, _LPAR = 0x42224, _RPAR = 0x24442;
     
-int[10] digitos = int[10](CH_0, CH_1, CH_2, CH_3, CH_4, CH_5, CH_6, CH_7, CH_8, CH_9);
+int[10] digitos = int[10](_0, _1, _2, _3, _4, _5, _6, _7, _8, _9);
 
 const ivec2 MAP_SIZE = ivec2(4,5);
 
@@ -145,7 +145,9 @@ int text(vec2 uv, const float size) {
     int chr = 0;
     
     // Bitmap text rendering!       
-    int[] text = int[](CH_B, CH_I, CH_T, CH_M, CH_A, CH_P); 
+    int[] text = int[](_B, _I, _T, _M, _A, _P, _BLNK, _T, _E, _X,
+        _T, _BLNK, _R, _E, _N, _D, _E, _R, _I, _N, _G, _EXCL,
+        _EXCL); 
     const int n = text.length();   
     int[50] plantilla, plantilla1 = plantilla;    
 
@@ -164,54 +166,36 @@ int text(vec2 uv, const float size) {
     
     chr += drawChar(plantilla1); 
     
-    chr += drawChar( CH_BLNK); 
-    chr += drawChar( CH_T); 
-    chr += drawChar( CH_E); 
-    chr += drawChar( CH_X); 
-    chr += drawChar( CH_T); 
-    chr += drawChar( CH_BLNK); 
-    chr += drawChar( CH_R); 
-    chr += drawChar( CH_E); 
-    chr += drawChar( CH_N); 
-    chr += drawChar( CH_D); 
-    chr += drawChar( CH_E); 
-    chr += drawChar( CH_R); 
-    chr += drawChar( CH_I); 
-    chr += drawChar( CH_N); 
-    chr += drawChar( CH_G); 
-    chr += drawChar( CH_EXCL); 
-    chr += drawChar( CH_EXCL); 
-    
     // Today's Date: {date}
     charPos = vec2(0.05, 0.75);
     
-    chr += drawChar( CH_T);
-    chr += drawChar( CH_O); 
-    chr += drawChar( CH_D); 
-    chr += drawChar( CH_A); 
-    chr += drawChar( CH_Y); 
-    chr += drawChar( CH_APST); 
-    chr += drawChar( CH_S); 
-    chr += drawChar( CH_BLNK); 
-    chr += drawChar( CH_D); 
-    chr += drawChar( CH_A);
-    chr += drawChar( CH_T); 
-    chr += drawChar( CH_E); 
-    chr += drawChar( CH_BLNK); 
-    chr += drawChar( CH_LPAR); 
-    chr += drawChar( CH_M); 
-    chr += drawChar( CH_M); 
-    chr += drawChar( CH_HYPH); 
-    chr += drawChar( CH_D); 
-    chr += drawChar( CH_D); 
-    chr += drawChar( CH_HYPH); 
-    chr += drawChar( CH_Y); 
-    chr += drawChar( CH_Y);
-    chr += drawChar( CH_Y); 
-    chr += drawChar( CH_Y); 
-    chr += drawChar( CH_RPAR); 
+    chr += drawChar( _T);
+    chr += drawChar( _O); 
+    chr += drawChar( _D); 
+    chr += drawChar( _A); 
+    chr += drawChar( _Y); 
+    chr += drawChar( _APST); 
+    chr += drawChar( _S); 
+    chr += drawChar( _BLNK); 
+    chr += drawChar( _D); 
+    chr += drawChar( _A);
+    chr += drawChar( _T); 
+    chr += drawChar( _E); 
+    chr += drawChar( _BLNK); 
+    chr += drawChar( _LPAR); 
+    chr += drawChar( _M); 
+    chr += drawChar( _M); 
+    chr += drawChar( _HYPH); 
+    chr += drawChar( _D); 
+    chr += drawChar( _D); 
+    chr += drawChar( _HYPH); 
+    chr += drawChar( _Y); 
+    chr += drawChar( _Y);
+    chr += drawChar( _Y); 
+    chr += drawChar( _Y); 
+    chr += drawChar( _RPAR); 
     
-    chr += drawChar( CH_COLN); 
+    chr += drawChar( _COLN); 
     charPos.x -= spaceSize; //
     charPos.x += 0.1;
     
@@ -234,18 +218,18 @@ int text(vec2 uv, const float size) {
     // Shader uptime:
     charPos = vec2(0.05, 0.6);
     
-    chr += drawChar( CH_I);
-    chr += drawChar( CH_G);
-    chr += drawChar( CH_L); 
-    chr += drawChar( CH_O); 
-    chr += drawChar( CH_B); 
-    chr += drawChar( CH_A);
-    chr += drawChar( CH_L);
-    chr += drawChar( CH_T); 
-    chr += drawChar( CH_I); 
-    chr += drawChar( CH_M);
-    chr += drawChar( CH_E); 
-    chr += drawChar( CH_COLN); 
+    chr += drawChar(_I);
+    chr += drawChar( _G);
+    chr += drawChar( _L); 
+    chr += drawChar( _O); 
+    chr += drawChar( _B); 
+    chr += drawChar( _A);
+    chr += drawChar( _L);
+    chr += drawChar( _T); 
+    chr += drawChar( _I); 
+    chr += drawChar( _M);
+    chr += drawChar( _E); 
+    chr += drawChar( _COLN); 
     
     // The uptime itself.
     charPos.x += 0.3;
