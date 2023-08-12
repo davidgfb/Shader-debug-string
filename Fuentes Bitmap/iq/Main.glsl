@@ -1,15 +1,17 @@
-int CH_A = 0x69f99, CH_B = 0x79797, CH_C = 0xe111e, CH_D = 0x79997, CH_E = 0xf171f, 
-    CH_F = 0xf1711, CH_G = 0xe1d96, CH_H = 0x99f99, CH_I = 0xf444f, CH_J = 0x88996, 
-    CH_K = 0x95159, CH_L = 0x1111f, CH_M = 0x9f999, CH_N = 0x9bd99, CH_O = 0x69996,
-    CH_P = 0x79971, CH_Q = 0x69b5a, CH_R = 0x79759, CH_S = 0xe1687, CH_T = 0xf4444, 
-    CH_U = 0x99996, CH_V = 0x999a4, CH_W = 0x999f9, CH_X = 0x99699, CH_Y = 0x99e8e,     
-    CH_Z = 0xf843f, CH_0 = 0x6bd96, CH_1 = 0x46444, CH_2 = 0x6942f, CH_3 = 0x69496, 
-    CH_4 = 0x99f88, CH_5 = 0xf1687, CH_6 = 0x61796, CH_7 = 0xf8421, CH_8 = 0x69696, 
-    CH_9 = 0x69e84, CH_APST = 0x66400, CH_PI = 0x0faa9, CH_UNDS = 0x0000f,     
-    CH_HYPH = 0x00600, CH_TILD = 0x0a500, CH_PLUS = 0x02720, CH_EQUL = 0x0f0f0, 
-    CH_SLSH = 0x08421, CH_EXCL = 0x33303, CH_QUES = 0x69404, CH_COMM = 0x00032, 
-    CH_FSTP = 0x00002, CH_QUOT = 0x55000, CH_BLNK = 0x00000, CH_COLN = 0x00202, 
-    CH_LPAR = 0x42224, CH_RPAR = 0x24442;
+const int CH_A = 0x69f99, CH_B = 0x79797, CH_C = 0xe111e, CH_D = 0x79997, 
+    CH_E = 0xf171f, CH_F = 0xf1711, CH_G = 0xe1d96, CH_H = 0x99f99, CH_I = 0xf444f, 
+    CH_J = 0x88996, CH_K = 0x95159, CH_L = 0x1111f, CH_M = 0x9f999, CH_N = 0x9bd99, 
+    CH_O = 0x69996, CH_P = 0x79971, CH_Q = 0x69b5a, CH_R = 0x79759, CH_S = 0xe1687, 
+    CH_T = 0xf4444, CH_U = 0x99996, CH_V = 0x999a4, CH_W = 0x999f9, CH_X = 0x99699, 
+    CH_Y = 0x99e8e, CH_Z = 0xf843f, CH_0 = 0x6bd96, CH_1 = 0x46444, CH_2 = 0x6942f, 
+    CH_3 = 0x69496, CH_4 = 0x99f88, CH_5 = 0xf1687, CH_6 = 0x61796, CH_7 = 0xf8421, 
+    CH_8 = 0x69696, CH_9 = 0x69e84, CH_APST = 0x66400, CH_PI = 0x0faa9, 
+    CH_UNDS = 0x0000f, CH_HYPH = 0x00600, CH_TILD = 0x0a500, CH_PLUS = 0x02720, 
+    CH_EQUL = 0x0f0f0, CH_SLSH = 0x08421, CH_EXCL = 0x33303, CH_QUES = 0x69404, 
+    CH_COMM = 0x00032, CH_FSTP = 0x00002, CH_QUOT = 0x55000, CH_BLNK = 0x00000, 
+    CH_COLN = 0x00202, CH_LPAR = 0x42224, CH_RPAR = 0x24442;
+    
+int[10] digitos = int[10](CH_0, CH_1, CH_2, CH_3, CH_4, CH_5, CH_6, CH_7, CH_8, CH_9);
 
 const ivec2 MAP_SIZE = ivec2(4,5);
 
@@ -59,13 +61,16 @@ int drawIntCarriage(int val, out vec2 pos, vec2 size, vec2 uv, int places) {
     // (MAX_INT is 10 characters)
     for(int i = 0; i < 10; ++i) {
         // If we've run out of film, cut!
-        if(!(val == 0 && i >= places)) {
+        if (val == 0 && i >= places) {
+            i = 10;
+        
+        } else {
             // The current lsd is the difference between the current
             // value and the value rounded down one place.
             int digit = val % 10;
             // Draw the character. Since there are no overlaps, we don't
             // need max().
-            res |= drawChar(26 + digit, pos, size, uv); //CH_0 = 26
+            res |= drawChar(digitos[digit], pos, size, uv); //CH_0 = 26
             // Move the carriage.
             pos.x -= size.x * 1.2;
             // Truncate away this most recent digit.
@@ -107,7 +112,7 @@ int drawFixed(float val, int places, vec2 pos, vec2 size, vec2 uv) {
     p.x += size.x * 0.4;
     res |= drawChar(CH_FSTP, p, size, uv); p.x -= size.x * 1.2;
     // And after as well.
-    p.x += size.x *.1;
+    p.x += size.x / 10.0;
     // Draw the integer part.
     res |= drawIntCarriage(int(ival), p, size, uv, 1);
 	
@@ -207,8 +212,7 @@ int text(vec2 uv, const float size) {
 /*
 	Shadertoy's fancy entry function.
 */
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
+void mainImage(out vec4 fragColor, vec2 fragCoord) {
     // Get Y-normalized UV coords.
 	vec2 uv = fragCoord / iResolution.y;
     
