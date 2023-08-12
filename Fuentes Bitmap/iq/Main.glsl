@@ -59,7 +59,7 @@ int drawIntCarriage(int val, out vec2 pos, vec2 size, vec2 uv, int places) {
     int res = 0;
     // Surely it won't be more than 10 chars long, will it?
     // (MAX_INT is 10 characters)
-    for(int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 10; ++i) {
         // If we've run out of film, cut!
         if (val == 0 && i >= places) {
             i = 10;
@@ -101,8 +101,7 @@ int drawInt(int val, vec2 pos, vec2 size, vec2 uv) {
 	Prints a fixed point fractional value. Be even more careful about overflowing.
 */
 int drawFixed(float val, int places, vec2 pos, vec2 size, vec2 uv) {
-    float fval = 0.0, ival = 0.0;
-    fval = modf(val, ival);
+    float ival = 0.0, fval = modf(val, ival);
     
     vec2 p = vec2(pos);
     
@@ -127,6 +126,7 @@ int text(vec2 uv, const float size) {
     vec2 charPos = vec2(0.05, 0.90);
     // Draw some text!
     int chr = 0;
+    
     // Bitmap text rendering!
     chr += drawChar( CH_B, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
@@ -153,7 +153,8 @@ int text(vec2 uv, const float size) {
     chr += drawChar( CH_EXCL, charPos, charSize, uv); charPos.x += spaceSize;
     
     // Today's Date: {date}
-    charPos = vec2(0.05, .75);
+    charPos = vec2(0.05, 0.75);
+    
     chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_O, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
@@ -179,17 +180,23 @@ int text(vec2 uv, const float size) {
     chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_RPAR, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += .1;
+    
+    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += 0.1;
     // The date itself.
-    charPos.x += .3;
+    charPos.x += 0.3;
     chr += drawIntCarriage( int(iDate.x), charPos, charSize, uv, 4);
+    
     chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
+    
     chr += drawIntCarriage( int(iDate.z)+1, charPos, charSize, uv, 2);
+    
     chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
+    
     chr += drawIntCarriage( int(iDate.y)+1, charPos, charSize, uv, 2);
     
     // Shader uptime:
     charPos = vec2(0.05, .6);
+    
     chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_G, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_L, charPos, charSize, uv); charPos.x += spaceSize;
@@ -202,8 +209,9 @@ int text(vec2 uv, const float size) {
     chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
     chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += spaceSize;
+    
     // The uptime itself.
-    charPos.x += .3;
+    charPos.x += 0.3;
     chr += drawFixed( iTime, 2, charPos, charSize, uv);
     
     return chr;
