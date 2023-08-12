@@ -52,26 +52,25 @@ int drawChar(int char, vec2 pos, vec2 size, vec2 uv) {
 	so that multiple calls to this can be made without worrying
 	much about kerning.
 */
-int drawIntCarriage( in int val, inout vec2 pos, in vec2 size, in vec2 uv, in int places )
-{
+int drawIntCarriage(int val, out vec2 pos, vec2 size, vec2 uv, int places) {
     // Create a place to store the current values.
     int res = 0;
     // Surely it won't be more than 10 chars long, will it?
     // (MAX_INT is 10 characters)
-    for( int i = 0; i < 10; ++i )
-    {
+    for(int i = 0; i < 10; ++i) {
         // If we've run out of film, cut!
-        if(val == 0 && i >= places) break;
-        // The current lsd is the difference between the current
-        // value and the value rounded down one place.
-        int digit = val % 10;
-        // Draw the character. Since there are no overlaps, we don't
-        // need max().
-        res |= drawChar(CH_0+digit,pos,size,uv);
-        // Move the carriage.
-        pos.x -= size.x*1.2;
-        // Truncate away this most recent digit.
-        val /= 10;
+        if(!(val == 0 && i >= places)) {
+            // The current lsd is the difference between the current
+            // value and the value rounded down one place.
+            int digit = val % 10;
+            // Draw the character. Since there are no overlaps, we don't
+            // need max().
+            res |= drawChar(26 + digit, pos, size, uv); //CH_0 = 26
+            // Move the carriage.
+            pos.x -= size.x * 1.2;
+            // Truncate away this most recent digit.
+            val /= 10;
+        }
     }
     
     return res;
@@ -81,14 +80,14 @@ int drawIntCarriage( in int val, inout vec2 pos, in vec2 size, in vec2 uv, in in
 	Draws an integer to the screen. No side-effects, but be ever vigilant
 	so that your cup not overfloweth.
 */
-int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv )
-{
+int drawInt(int val, vec2 pos, vec2 size, vec2 uv) {
     vec2 p = vec2(pos);
     float s = sign(float(val));
     val *= int(s);
     
-    int c = drawIntCarriage(val,p,size,uv,1);
-    if( s<0.0 ) c |= drawChar(CH_HYPH,p,size,uv);
+    int c = drawIntCarriage(val, p, size, uv, 1);
+    
+    if (s < 0.0) c |= drawChar(CH_HYPH, p, size, uv);
     
     return c;
 }
@@ -96,29 +95,28 @@ int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv )
 /*
 	Prints a fixed point fractional value. Be even more careful about overflowing.
 */
-int drawFixed( in float val, in int places, in vec2 pos, in vec2 size, in vec2 uv )
-{
-    float fval, ival;
+int drawFixed(float val, int places, vec2 pos, vec2 size, vec2 uv) {
+    float fval = 0.0, ival = 0.0;
     fval = modf(val, ival);
     
     vec2 p = vec2(pos);
     
     // Draw the floating point part.
-    int res = drawIntCarriage( int( fval*pow(10.0,float(places)) ), p, size, uv, places );
+    int res = drawIntCarriage(int(fval * pow(10.0, float(places))), p, size, uv, places);
     // The decimal is tiny, so we back things up a bit before drawing it.
-    p.x += size.x*.4;
-    res |= drawChar(CH_FSTP,p,size,uv); p.x-=size.x*1.2;
+    p.x += size.x * 0.4;
+    res |= drawChar(CH_FSTP, p, size, uv); p.x -= size.x * 1.2;
     // And after as well.
     p.x += size.x *.1;
     // Draw the integer part.
-    res |= drawIntCarriage(int(ival),p,size,uv,1);
-	return res;
+    res |= drawIntCarriage(int(ival), p, size, uv, 1);
+	
+    return res;
 }
 
-int text( in vec2 uv, const float size )
-{
-    vec2 charSize = vec2( size*vec2(MAP_SIZE)/iResolution.y );
-    float spaceSize = float( size*float(MAP_SIZE.x+1)/iResolution.y );
+int text(vec2 uv, const float size) {
+    vec2 charSize = vec2(size * vec2(MAP_SIZE) / iResolution.y);
+    float spaceSize = float(size * float(MAP_SIZE.x + 1) / iResolution.y);
         
     // and a starting position.
     vec2 charPos = vec2(0.05, 0.90);
@@ -202,6 +200,7 @@ int text( in vec2 uv, const float size )
     // The uptime itself.
     charPos.x += .3;
     chr += drawFixed( iTime, 2, charPos, charSize, uv);
+    
     return chr;
 }
 
@@ -214,7 +213,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	vec2 uv = fragCoord / iResolution.y;
     
     // Draw some text!
-    float txt = float( text(uv, 3.5) );
-    
-	fragColor = vec4(txt,txt,txt,1.0);
+    float txt = float(text(uv, 3.5));
+        
+	fragColor = vec4(vec3(txt), 1.0);
 }
