@@ -66,10 +66,9 @@ int drawIntCarriage(int val, out vec2 pos, vec2 size, vec2 uv, int places) {
     // (MAX_INT is 10 characters)
     for (int i = 0; i < 10; ++i) {
         // If we've run out of film, cut!
-        if (val == 0 && i >= places) {
-            i = 10;
+        if (val == 0 && i >= places) i = 10;
         
-        } else {
+        else {
             // The current lsd is the difference between the current
             // value and the value rounded down one place.
             int digit = val % 10;
@@ -129,22 +128,42 @@ int drawChar(int char) {
     return drawChar(char, charPos, charSize, UV);
 }
 
+int drawChar(int[50] chars) {
+    int suma = 0;
+    
+    for (int i = 0; i < 50; i++) suma += drawChar(chars[i]);
+       
+    return suma;
+}
+
 int text(vec2 uv, const float size) {
     charSize = vec2(size * vec2(MAP_SIZE) / iResolution.y);
     spaceSize = float(size * float(MAP_SIZE.x + 1) / iResolution.y);
     UV = uv;    
     // and a starting position.
-    //vec2 charPos = vec2(0.05, 0.90);
     // Draw some text!
     int chr = 0;
     
-    // Bitmap text rendering!
-    chr += drawChar( CH_B); 
-    chr += drawChar( CH_I); 
-    chr += drawChar( CH_T); 
-    chr += drawChar( CH_M); 
-    chr += drawChar( CH_A); 
-    chr += drawChar( CH_P); 
+    // Bitmap text rendering!       
+    int[] text = int[](CH_B, CH_I, CH_T, CH_M, CH_A, CH_P); 
+    const int n = text.length();   
+    int[50] plantilla, plantilla1 = plantilla;    
+
+    for (int i = 0; i < n; i++) {
+        plantilla1[i] = text[i];
+    }
+    
+    
+    /*
+    int[n] text1;
+    
+    for (int i = 0; i < n; i++) {
+        text1[i] = text[i];
+    }
+    */
+    
+    chr += drawChar(plantilla1); 
+    
     chr += drawChar( CH_BLNK); 
     chr += drawChar( CH_T); 
     chr += drawChar( CH_E); 
