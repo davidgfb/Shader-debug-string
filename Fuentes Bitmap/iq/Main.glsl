@@ -1,20 +1,15 @@
-const int font[] = int[](
- 0x69f99, 0x79797, 0xe111e, 0x79997, 0xf171f, 0xf1711, 0xe1d96, 0x99f99, 
- 0xf444f, 0x88996, 0x95159, 0x1111f, 0x9f999, 0x9bd99, 0x69996, 0x79971,
- 0x69b5a, 0x79759, 0xe1687, 0xf4444, 0x99996, 0x999a4, 0x999f9, 0x99699,
- 0x99e8e, 0xf843f, 0x6bd96, 0x46444, 0x6942f, 0x69496, 0x99f88, 0xf1687,
- 0x61796, 0xf8421, 0x69696, 0x69e84, 0x66400, 0x0faa9, 0x0000f, 0x00600,
- 0x0a500, 0x02720, 0x0f0f0, 0x08421, 0x33303, 0x69404, 0x00032, 0x00002,
- 0x55000, 0x00000, 0x00202, 0x42224, 0x24442);
-
-int CH_A = 0, CH_B = 1, CH_C = 2, CH_D = 3, CH_E = 4, CH_F = 5, CH_G = 6, CH_H = 7,
-    CH_I = 8, CH_J = 9, CH_K = 10, CH_L = 11, CH_M = 12, CH_N = 13, CH_O = 14,
-    CH_P = 15, CH_Q = 16, CH_R = 17, CH_S = 18, CH_T = 19, CH_U = 20, CH_V = 21,
-    CH_W = 22, CH_X = 23, CH_Y = 24, CH_Z = 25, CH_0 = 26, CH_1 = 27, CH_2 = 28,
-    CH_3 = 29, CH_4 = 30, CH_5 = 31, CH_6 = 32, CH_7 = 33, CH_8 = 34, CH_9 = 35,
-    CH_APST = 36, CH_PI = 37, CH_UNDS = 38, CH_HYPH = 39, CH_TILD = 40, CH_PLUS = 41,
-    CH_EQUL = 42, CH_SLSH = 43, CH_EXCL = 44, CH_QUES = 45, CH_COMM = 46, CH_FSTP = 47,
-    CH_QUOT = 48, CH_BLNK = 49, CH_COLN = 50, CH_LPAR = 51, CH_RPAR = 52;
+int CH_A = 0x69f99, CH_B = 0x79797, CH_C = 0xe111e, CH_D = 0x79997, CH_E = 0xf171f, 
+    CH_F = 0xf1711, CH_G = 0xe1d96, CH_H = 0x99f99, CH_I = 0xf444f, CH_J = 0x88996, 
+    CH_K = 0x95159, CH_L = 0x1111f, CH_M = 0x9f999, CH_N = 0x9bd99, CH_O = 0x69996,
+    CH_P = 0x79971, CH_Q = 0x69b5a, CH_R = 0x79759, CH_S = 0xe1687, CH_T = 0xf4444, 
+    CH_U = 0x99996, CH_V = 0x999a4, CH_W = 0x999f9, CH_X = 0x99699, CH_Y = 0x99e8e,     
+    CH_Z = 0xf843f, CH_0 = 0x6bd96, CH_1 = 0x46444, CH_2 = 0x6942f, CH_3 = 0x69496, 
+    CH_4 = 0x99f88, CH_5 = 0xf1687, CH_6 = 0x61796, CH_7 = 0xf8421, CH_8 = 0x69696, 
+    CH_9 = 0x69e84, CH_APST = 0x66400, CH_PI = 0x0faa9, CH_UNDS = 0x0000f,     
+    CH_HYPH = 0x00600, CH_TILD = 0x0a500, CH_PLUS = 0x02720, CH_EQUL = 0x0f0f0, 
+    CH_SLSH = 0x08421, CH_EXCL = 0x33303, CH_QUES = 0x69404, CH_COMM = 0x00032, 
+    CH_FSTP = 0x00002, CH_QUOT = 0x55000, CH_BLNK = 0x00000, CH_COLN = 0x00202, 
+    CH_LPAR = 0x42224, CH_RPAR = 0x24442;
 
 const ivec2 MAP_SIZE = ivec2(4,5);
 
@@ -22,12 +17,12 @@ const ivec2 MAP_SIZE = ivec2(4,5);
 	Draws a character, given its encoded value, a position, size and
 	current [0..1] uv coordinate.
 */
-int drawChar( in int char, in vec2 pos, in vec2 size, in vec2 uv )
-{
+int drawChar(int char, vec2 pos, vec2 size, vec2 uv) {
+    int salida = 0;
     
     // Subtract our position from the current uv so that we can
     // know if we're inside the bounding box or not.
-    uv-=pos;
+    uv -= pos;
     
     // Divide the screen space by the size, so our bounding box is 1x1.
     uv /= size;    
@@ -40,15 +35,15 @@ int drawChar( in int char, in vec2 pos, in vec2 size, in vec2 uv )
     ivec2 iuv = ivec2(round(uv));
     
 	// Bounding box check. With branches, so we avoid the maths and lookups    
-    if( iuv.x<0 || iuv.x>MAP_SIZE.x-1 ||
-        iuv.y<0 || iuv.y>MAP_SIZE.y-1 ) return 0;
+    if(!(iuv.x < 0 || iuv.x > MAP_SIZE.x - 1 || iuv.y < 0 || iuv.y > MAP_SIZE.y - 1)) {               
+        // Compute bit index
+        int index = MAP_SIZE.x*iuv.y + iuv.x;
 
-    // Compute bit index
-    int index = MAP_SIZE.x*iuv.y + iuv.x;
+        // Get the appropriate bit and return it.
+        salida = (char >> index) & 1;
+    }
     
-    // Get the appropriate bit and return it.
-    return (font[char]>>index)&1;
-
+    return salida;
 }
 
 /*
@@ -78,6 +73,7 @@ int drawIntCarriage( in int val, inout vec2 pos, in vec2 size, in vec2 uv, in in
         // Truncate away this most recent digit.
         val /= 10;
     }
+    
     return res;
 }
 
@@ -93,6 +89,7 @@ int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv )
     
     int c = drawIntCarriage(val,p,size,uv,1);
     if( s<0.0 ) c |= drawChar(CH_HYPH,p,size,uv);
+    
     return c;
 }
 
