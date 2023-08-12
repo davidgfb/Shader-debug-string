@@ -149,7 +149,7 @@ int text(vec2 uv, const float size) {
         _T, _BLNK, _R, _E, _N, _D, _E, _R, _I, _N, _G, _EXCL,
         _EXCL); 
     const int n = text.length();   
-    int[50] plantilla, plantilla1 = plantilla;    
+    int[50] plantilla, plantilla1 = plantilla, plantilla2 = plantilla;    
 
     for (int i = 0; i < n; i++) {
         plantilla1[i] = text[i];
@@ -163,11 +163,18 @@ int text(vec2 uv, const float size) {
         text1[i] = text[i];
     }
     */
-    
+        
     chr += drawChar(plantilla1); 
     
     // Today's Date: {date}
-    charPos = vec2(0.05, 0.75);
+    charPos = vec2(0.05, 0.75); //!
+    
+    int[] text1 = int[](_T);
+    
+    const int n1 = text1.length();
+    
+    
+    //chr += drawChar(plantilla2); //50 espacios negros tapan la sig linea en la misma pos
     
     chr += drawChar( _T);
     chr += drawChar( _O); 
