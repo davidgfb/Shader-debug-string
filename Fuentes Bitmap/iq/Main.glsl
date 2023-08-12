@@ -15,6 +15,9 @@ int[10] digitos = int[10](CH_0, CH_1, CH_2, CH_3, CH_4, CH_5, CH_6, CH_7, CH_8, 
 
 const ivec2 MAP_SIZE = ivec2(4,5);
 
+vec2 charPos = vec2(0.05, 0.90);
+float spaceSize = 0.0;
+
 /*
 	Draws a character, given its encoded value, a position, size and
 	current [0..1] uv coordinate.
@@ -44,6 +47,8 @@ int drawChar(int char, vec2 pos, vec2 size, vec2 uv) {
         // Get the appropriate bit and return it.
         salida = (char >> index) & 1;
     }
+    
+    charPos.x += spaceSize;
     
     return salida;
 }
@@ -118,97 +123,110 @@ int drawFixed(float val, int places, vec2 pos, vec2 size, vec2 uv) {
     return res;
 }
 
+vec2 charSize, UV;
+
+int drawChar(int char) {
+    return drawChar(char, charPos, charSize, UV);
+}
+
 int text(vec2 uv, const float size) {
-    vec2 charSize = vec2(size * vec2(MAP_SIZE) / iResolution.y);
-    float spaceSize = float(size * float(MAP_SIZE.x + 1) / iResolution.y);
-        
+    charSize = vec2(size * vec2(MAP_SIZE) / iResolution.y);
+    spaceSize = float(size * float(MAP_SIZE.x + 1) / iResolution.y);
+    UV = uv;    
     // and a starting position.
-    vec2 charPos = vec2(0.05, 0.90);
+    //vec2 charPos = vec2(0.05, 0.90);
     // Draw some text!
     int chr = 0;
     
     // Bitmap text rendering!
-    chr += drawChar( CH_B, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_P, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_X, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_R, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_N, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_R, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_N, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_G, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_EXCL, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_EXCL, charPos, charSize, uv); charPos.x += spaceSize;
+    chr += drawChar( CH_B); 
+    chr += drawChar( CH_I); 
+    chr += drawChar( CH_T); 
+    chr += drawChar( CH_M); 
+    chr += drawChar( CH_A); 
+    chr += drawChar( CH_P); 
+    chr += drawChar( CH_BLNK); 
+    chr += drawChar( CH_T); 
+    chr += drawChar( CH_E); 
+    chr += drawChar( CH_X); 
+    chr += drawChar( CH_T); 
+    chr += drawChar( CH_BLNK); 
+    chr += drawChar( CH_R); 
+    chr += drawChar( CH_E); 
+    chr += drawChar( CH_N); 
+    chr += drawChar( CH_D); 
+    chr += drawChar( CH_E); 
+    chr += drawChar( CH_R); 
+    chr += drawChar( CH_I); 
+    chr += drawChar( CH_N); 
+    chr += drawChar( CH_G); 
+    chr += drawChar( CH_EXCL); 
+    chr += drawChar( CH_EXCL); 
     
     // Today's Date: {date}
     charPos = vec2(0.05, 0.75);
     
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_O, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_APST, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_S, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_LPAR, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_RPAR, charPos, charSize, uv); charPos.x += spaceSize;
+    chr += drawChar( CH_T);
+    chr += drawChar( CH_O); 
+    chr += drawChar( CH_D); 
+    chr += drawChar( CH_A); 
+    chr += drawChar( CH_Y); 
+    chr += drawChar( CH_APST); 
+    chr += drawChar( CH_S); 
+    chr += drawChar( CH_BLNK); 
+    chr += drawChar( CH_D); 
+    chr += drawChar( CH_A);
+    chr += drawChar( CH_T); 
+    chr += drawChar( CH_E); 
+    chr += drawChar( CH_BLNK); 
+    chr += drawChar( CH_LPAR); 
+    chr += drawChar( CH_M); 
+    chr += drawChar( CH_M); 
+    chr += drawChar( CH_HYPH); 
+    chr += drawChar( CH_D); 
+    chr += drawChar( CH_D); 
+    chr += drawChar( CH_HYPH); 
+    chr += drawChar( CH_Y); 
+    chr += drawChar( CH_Y);
+    chr += drawChar( CH_Y); 
+    chr += drawChar( CH_Y); 
+    chr += drawChar( CH_RPAR); 
     
-    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += 0.1;
+    chr += drawChar( CH_COLN); 
+    charPos.x -= spaceSize; //
+    charPos.x += 0.1;
+    
     // The date itself.
     charPos.x += 0.3;
     chr += drawIntCarriage( int(iDate.x), charPos, charSize, uv, 4);
     
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
+    chr += drawChar( CH_HYPH); 
+    charPos.x -= spaceSize; //
+    charPos.x-=spaceSize;
     
-    chr += drawIntCarriage( int(iDate.z)+1, charPos, charSize, uv, 2);
+    chr += drawIntCarriage( int(iDate.z) + 1, charPos, charSize, uv, 2);
     
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
+    chr += drawChar( CH_HYPH); 
+    charPos.x -= spaceSize; //
+    charPos.x-=spaceSize;
     
-    chr += drawIntCarriage( int(iDate.y)+1, charPos, charSize, uv, 2);
+    chr += drawIntCarriage( int(iDate.y) + 1, charPos, charSize, uv, 2);
     
     // Shader uptime:
-    charPos = vec2(0.05, .6);
+    charPos = vec2(0.05, 0.6);
     
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_G, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_L, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_O, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_B, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_L, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += spaceSize;
+    chr += drawChar( CH_I);
+    chr += drawChar( CH_G);
+    chr += drawChar( CH_L); 
+    chr += drawChar( CH_O); 
+    chr += drawChar( CH_B); 
+    chr += drawChar( CH_A);
+    chr += drawChar( CH_L);
+    chr += drawChar( CH_T); 
+    chr += drawChar( CH_I); 
+    chr += drawChar( CH_M);
+    chr += drawChar( CH_E); 
+    chr += drawChar( CH_COLN); 
     
     // The uptime itself.
     charPos.x += 0.3;
