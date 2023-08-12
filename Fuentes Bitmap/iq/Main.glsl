@@ -96,7 +96,7 @@ int drawInt(int val, vec2 pos, vec2 size, vec2 uv) {
     
     int c = drawIntCarriage(val, p, size, uv, 1);
     
-    if (s < 0.0) c |= drawChar(CH_HYPH, p, size, uv);
+    if (s < 0.0) c |= drawChar(_HYPH, p, size, uv);
     
     return c;
 }
@@ -113,7 +113,7 @@ int drawFixed(float val, int places, vec2 pos, vec2 size, vec2 uv) {
     int res = drawIntCarriage(int(fval * pow(10.0, float(places))), p, size, uv, places);
     // The decimal is tiny, so we back things up a bit before drawing it.
     p.x += size.x * 0.4;
-    res |= drawChar(CH_FSTP, p, size, uv); p.x -= size.x * 1.2;
+    res |= drawChar(_FSTP, p, size, uv); p.x -= size.x * 1.2;
     // And after as well.
     p.x += size.x / 10.0;
     // Draw the integer part.
@@ -203,13 +203,13 @@ int text(vec2 uv, const float size) {
     charPos.x += 0.3;
     chr += drawIntCarriage( int(iDate.x), charPos, charSize, uv, 4);
     
-    chr += drawChar( CH_HYPH); 
+    chr += drawChar( _HYPH); 
     charPos.x -= spaceSize; //
     charPos.x-=spaceSize;
     
     chr += drawIntCarriage( int(iDate.z) + 1, charPos, charSize, uv, 2);
     
-    chr += drawChar( CH_HYPH); 
+    chr += drawChar( _HYPH); 
     charPos.x -= spaceSize; //
     charPos.x-=spaceSize;
     
