@@ -28,10 +28,12 @@ int[4] hex_A_Bin(int hex) { //int_A_Ar_Flt
     return ar_Int; //ar_Flt;
 }
 
-void set_Fila(mat4 m, int n_Fila, int[4] ar_Int) { //SOLO AQUI float
+mat4 set_Fila(mat4 m, int n_Fila, int[4] ar_Int) { //SOLO AQUI float
     for (int i = 0; i < 4; i++) {
         m[n_Fila][i] = float(ar_Int[i]);
     }
+    
+    return m;
 }
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
@@ -61,11 +63,13 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     mat4 m;
     
-    set_Fila(m, 0, ar_Int);
+    m = set_Fila(m, 0, ar_Int);
+    m = set_Fila(m, 1, ar_Int1);
+    m = set_Fila(m, 2, ar_Int1);
+    m = set_Fila(m, 3, ar_Int);
 
-
-
-
+    
+    
 
     /*
     for (int i = 0; i < 4; i++) {
