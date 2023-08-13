@@ -12,22 +12,25 @@ void _4x4() {
 //mat4 a;
 
 
-float[4] hex_A_Bin(int hex) { //int_A_Ar_Flt
+int[4] hex_A_Bin(int hex) { //int_A_Ar_Flt
     int _3 = hex % 2, _2 = hex / 2 % 2, _1 = hex / 4 % 2, _0 = hex / 8 % 2;     
     int[] ar_Int = int[](_0, _1, _2, _3);
+    
+    /*
     const int n_Elems = ar_Int.length();
     float[n_Elems] ar_Flt;
     
     for (int i = 0; i < n_Elems; i++) {
         ar_Flt[i] = float(ar_Int[i]);
     }
+    */
     
-    return ar_Flt;
+    return ar_Int; //ar_Flt;
 }
 
-void set_Fila(mat4 m, int n_Fila, float[4] ar_Flt) { //SOLO AQUI float
+void set_Fila(mat4 m, int n_Fila, int[4] ar_Int) { //SOLO AQUI float
     for (int i = 0; i < 4; i++) {
-        m[n_Fila][i] = ar_Flt[i];
+        m[n_Fila][i] = float(ar_Int[i]);
     }
 }
 
@@ -54,11 +57,11 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
 
      //n,n1,n1,n
 
-    float[] ar = hex_A_Bin(0xF), ar1 = hex_A_Bin(9);
+    int[] ar_Int = hex_A_Bin(0xF), ar_Int1 = hex_A_Bin(9);
     
     mat4 m;
     
-    set_Fila(m, 0, ar);
+    set_Fila(m, 0, ar_Int);
 
 
 
