@@ -301,6 +301,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
     chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
+
+
     
     // Draw some text!
     float txt = float( chr );
