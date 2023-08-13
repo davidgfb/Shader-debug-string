@@ -136,6 +136,14 @@ int drawChar(int[50] chars) {
     return suma;
 }
 
+///*
+int drawIntCarriage(int val, int places) {
+    //int res = 0; //para iterativa
+    
+    return drawIntCarriage(val, charPos, charSize, UV, places); //res; //idem
+}
+//*/
+
 int text(vec2 uv, const float size) {
     charSize = vec2(size * vec2(MAP_SIZE) / iResolution.y);
     spaceSize = float(size * float(MAP_SIZE.x + 1) / iResolution.y);
@@ -145,15 +153,17 @@ int text(vec2 uv, const float size) {
     int chr = 0;
     
     // Bitmap text rendering!       
-    int[] text = int[](_B, _I, _T, _M, _A, _P, _BLNK, _T, _E, _X, _T, _BLNK, _R, _E, 
-        _N, _D, _E, _R, _I, _N, _G, _EXCL, _EXCL); 
+    int[] text = int[](_B, _I, _T, _M, _A, _P, _BLNK, _T, _E, _X,
+        _T, _BLNK, _R, _E, _N, _D, _E, _R, _I, _N, _G, _EXCL,
+        _EXCL); 
     const int n = text.length();   
-    int[50] plantilla, plantilla1 = plantilla;     
+    int[50] plantilla, plantilla1 = plantilla, plantilla2 = plantilla;    
 
     for (int i = 0; i < n; i++) {
         plantilla1[i] = text[i];
     }
-        
+    
+    
     /*
     int[n] text1;
     
@@ -164,46 +174,39 @@ int text(vec2 uv, const float size) {
         
     chr += drawChar(plantilla1); 
     
-    /*
-    for (int i = 0; i < n; i++) {
-        plantilla[i] = 0;
-    }
-    */
-    
     // Today's Date: {date}
     charPos = vec2(0.05, 0.75); //!
     
-    int[50] plantilla2 = plantilla;
-    
     int[] text1 = int[](_T, _O, _D, _A, _Y, _APST, _S, _BLNK, _D, _A, _T, _E, _BLNK, 
         _LPAR, _M, _M, _HYPH, _D, _D, _HYPH, _Y, _Y, _Y, _Y, _RPAR, _COLN);
+    //int[] text1 = int[](_T);
     
     const int n1 = text1.length();
-        
+    
     for (int i = 0; i < n1; i++) {
         plantilla2[i] = text1[i];
     }
-       
-    chr += drawChar(plantilla2); //50 espacios negros tapan la sig linea en la misma pos
+        
+    //chr += drawChar(plantilla2); //50 espacios negros tapan la sig linea en la misma pos
     
     charPos.x -= spaceSize; //
     charPos.x += 0.1;
     
     // The date itself.
     charPos.x += 0.3;
-    chr += drawIntCarriage( int(iDate.x), charPos, charSize, uv, 4);
+    chr += drawIntCarriage( int(iDate.x), 4);
     
     chr += drawChar( _HYPH); 
     charPos.x -= spaceSize; //
     charPos.x-=spaceSize;
     
-    chr += drawIntCarriage( int(iDate.z) + 1, charPos, charSize, uv, 2);
+    chr += drawIntCarriage( int(iDate.z) + 1, 2);
     
     chr += drawChar( _HYPH); 
     charPos.x -= spaceSize; //
     charPos.x-=spaceSize;
     
-    chr += drawIntCarriage( int(iDate.y) + 1, charPos, charSize, uv, 2);
+    chr += drawIntCarriage( int(iDate.y) + 1, 2);
     
     // Shader uptime:
     charPos = vec2(0.05, 0.6);
