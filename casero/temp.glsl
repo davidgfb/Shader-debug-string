@@ -44,9 +44,6 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     col = vec3(m[xPix % 4][yPix % 4]);
  
-    //if ([xPix % 4]) col = vec3(1);  
-    //if (xPix % 2 == 0) col = vec3(1); //&& yPix % 2 == 0) col = vec3(1);
-
     // Output to screen
     fragColor = vec4(col,1.0);
 }
