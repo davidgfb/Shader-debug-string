@@ -145,17 +145,15 @@ int text(vec2 uv, const float size) {
     int chr = 0;
     
     // Bitmap text rendering!       
-    int[] text = int[](_B, _I, _T, _M, _A, _P, _BLNK, _T, _E, _X,
-        _T, _BLNK, _R, _E, _N, _D, _E, _R, _I, _N, _G, _EXCL,
-        _EXCL); 
+    int[] text = int[](_B, _I, _T, _M, _A, _P, _BLNK, _T, _E, _X, _T, _BLNK, _R, _E, 
+        _N, _D, _E, _R, _I, _N, _G, _EXCL, _EXCL); 
     const int n = text.length();   
-    int[50] plantilla, plantilla1 = plantilla, plantilla2 = plantilla;    
+    int[50] plantilla, plantilla1 = plantilla;     
 
     for (int i = 0; i < n; i++) {
         plantilla1[i] = text[i];
     }
-    
-    
+        
     /*
     int[n] text1;
     
@@ -166,43 +164,28 @@ int text(vec2 uv, const float size) {
         
     chr += drawChar(plantilla1); 
     
+    /*
+    for (int i = 0; i < n; i++) {
+        plantilla[i] = 0;
+    }
+    */
+    
     // Today's Date: {date}
     charPos = vec2(0.05, 0.75); //!
     
-    int[] text1 = int[](_T);
+    int[50] plantilla2 = plantilla;
+    
+    int[] text1 = int[](_T, _O, _D, _A, _Y, _APST, _S, _BLNK, _D, _A, _T, _E, _BLNK, 
+        _LPAR, _M, _M, _HYPH, _D, _D, _HYPH, _Y, _Y, _Y, _Y, _RPAR, _COLN);
     
     const int n1 = text1.length();
+        
+    for (int i = 0; i < n1; i++) {
+        plantilla2[i] = text1[i];
+    }
+       
+    chr += drawChar(plantilla2); //50 espacios negros tapan la sig linea en la misma pos
     
-    
-    //chr += drawChar(plantilla2); //50 espacios negros tapan la sig linea en la misma pos
-    
-    chr += drawChar( _T);
-    chr += drawChar( _O); 
-    chr += drawChar( _D); 
-    chr += drawChar( _A); 
-    chr += drawChar( _Y); 
-    chr += drawChar( _APST); 
-    chr += drawChar( _S); 
-    chr += drawChar( _BLNK); 
-    chr += drawChar( _D); 
-    chr += drawChar( _A);
-    chr += drawChar( _T); 
-    chr += drawChar( _E); 
-    chr += drawChar( _BLNK); 
-    chr += drawChar( _LPAR); 
-    chr += drawChar( _M); 
-    chr += drawChar( _M); 
-    chr += drawChar( _HYPH); 
-    chr += drawChar( _D); 
-    chr += drawChar( _D); 
-    chr += drawChar( _HYPH); 
-    chr += drawChar( _Y); 
-    chr += drawChar( _Y);
-    chr += drawChar( _Y); 
-    chr += drawChar( _Y); 
-    chr += drawChar( _RPAR); 
-    
-    chr += drawChar( _COLN); 
     charPos.x -= spaceSize; //
     charPos.x += 0.1;
     
