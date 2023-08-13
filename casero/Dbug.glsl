@@ -181,6 +181,12 @@ int drawFixed( in float val, in int places, in vec2 pos, in vec2 size, in vec2 u
 	Shadertoy's fancy entry function.
 */
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
+    vec3 col = vec3(0);
+
+    
+
+
+    ///*
     // Get Y-normalized UV coords.
 	vec2 uv = fragCoord / iResolution.y;
     
@@ -197,28 +203,47 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     // Draw some text!
     int chr = 0;
     
+    int dec = 0xF99F, _3 = dec % 16, _2 = dec / 16 % 16, _1 = dec / 256 % 16, 
+        _0 = dec / 4096 % 16; 
+    int[] ar_Hex = int[](_0, _1, _2, _3);
+    int hex = int(pow(10.0, 12.0)) * _0 + 100000000 * _1 + 10000 * _2 + _3;
+    
     //division entera
-    int hex = int(iTime) % 16, _3 = hex % 2, _2 = hex / 2 % 2, _1 = hex / 4 % 2, _0 = hex / 8 % 2; 
+    /*
+    int hex = 1, _3 = hex % 2, _2 = hex / 2 % 2, _1 = hex / 4 % 2, _0 = hex / 8 % 2; 
     int[] a_Bin = int[](_0, _1, _2, _3); 
     int nElems = a_Bin.length(), bin = 1000 * _0 + 100 * _1 + 10 * _2 + _3;
+    */
+    
     
     float pos = 0.3;
     
-    charPos = vec2(pos, 0.8);   
-    chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);    
+    charPos = vec2(pos, 0.8);  
+    
+    chr += drawIntCarriage( dec, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+
+    chr += drawChar( CH_D, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);    
+    /*
     chr += drawChar( CH_E, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
-    chr += drawChar( CH_X, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawChar( CH_C, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    */
     chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
 
-    chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( _0, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( _1, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( _2, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( _3, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
-    chr += drawChar( CH_D, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    //chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+
+    chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    /*
     chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
     
     chr += drawIntCarriage( bin, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
     chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
-
+    */
     
     
     
