@@ -14,11 +14,11 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     //vec2 uv = fragCoord/iResolution.xy;
 
     // Time varying pixel color
-    vec3 col = vec3(0); //0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+    vec3 col = vec3(0); 
         
     int xPix = int(fragCoord.y), yPix = int(fragCoord.x);
     
-    
+    if (xPix % 2 == 0 && yPix % 2 == 0) col = vec3(1);
 
     // Output to screen
     fragColor = vec4(col,1.0);
