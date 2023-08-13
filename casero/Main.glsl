@@ -30,17 +30,35 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     }
     */
     
-    //int[] aBin = int[](_1, _2, _3, _4);     
+    int xPix = int(fragCoord.y), yPix = int(fragCoord.x);    
+    
+    ///*
+    //hex -> bin, 0001
+    int hex = 1, _4 = hex % 2, _3 = _4 % 2, _2 = _3 % 2, _1 = _2 % 2; //, 
+    int[] aBin = int[](_1, _2, _3, _4);     
+    int nElems = aBin.length();
+    
+    if (xPix == 200) col = vec3(aBin[yPix % nElems]);
     
     /*
-    //DEMO
-    int hex = 0xF, _4 = hex % 2, _3 = _4 % 2, _2 = _3 % 2, _1 = _2 % 2, 
-        bin = 1000 * _1 + 100 * _2 + 10 * _3 + _4;
-    
-    if (bin == hex) col = vec3(1); //NO es igual hex q bin!!
+    for (int nElem = 0; nElem < nElems; nElem++) {
+        if (yPix == nElem) {
+            col = vec3(1);
+        }
+    }
     */
     
-    int xPix = int(fragCoord.x), yPix = int(fragCoord.y);
+    
+    
+    
+    //bin = 1000 * _1 + 100 * _2 + 10 * _3 + _4;
+        
+    
+    
+    //if (bin == hex) col = vec3(1); //NO es igual hex q bin!!
+    //*/
+    
+    
     
     
     
