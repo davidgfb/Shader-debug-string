@@ -198,7 +198,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int chr = 0;
     
     //division entera
-    int hex = 15, _3 = hex % 2, _2 = hex / 2 % 2, _1 = hex / 4 % 2, _0 = hex / 8 % 2; 
+    int hex = int(iTime) % 16, _3 = hex % 2, _2 = hex / 2 % 2, _1 = hex / 4 % 2, _0 = hex / 8 % 2; 
     int[] a_Bin = int[](_0, _1, _2, _3); 
     int nElems = a_Bin.length(), bin = 1000 * _0 + 100 * _1 + 10 * _2 + _3;
     
