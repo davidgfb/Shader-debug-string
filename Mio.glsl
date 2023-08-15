@@ -52,8 +52,10 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     m = set_Fila(m, 2, _2);
     m = set_Fila(m, 3, _3);
 
-    // Time varying pixel color
-    vec3 col = vec3(m[xPix % 4][yPix % 4]);
+    vec3 col = vec3(0);
+    
+    if (xPix > 150 && xPix < 200 && yPix > 150 && yPix < 200) 
+        col = vec3(m[xPix % 4][yPix % 4]);
 
     // Output to screen
     fragColor = vec4(col,1.0);
