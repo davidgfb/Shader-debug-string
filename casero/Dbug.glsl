@@ -195,7 +195,7 @@ int dec_A_Noton(int dec, int base) {
         noton = 0;
     
     //binario
-    if (base == 2) noton = int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
+    if (base == 2) noton = _1e3 * _0 + _1e2 * _1 + _1e1 * _2 + _3;
         
     //hexadecimal, notacion NO se reusa
     else if (base == 16) noton = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
@@ -242,6 +242,9 @@ void impr_Hex(int dec) {
 }
 */
 
+// and a starting position.
+vec2 charPos = vec2(0.05, 0.90);
+
 /*
 	Shadertoy's fancy entry function.
 */
@@ -256,8 +259,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 charSize = vec2( size*vec2(MAP_SIZE)/iResolution.y );
     float spaceSize = float( size*float(MAP_SIZE.x+1)/iResolution.y );
         
-    // and a starting position.
-    vec2 charPos = vec2(0.05, 0.90);
+    
     // Draw some text!
     int chr = 0;
     
