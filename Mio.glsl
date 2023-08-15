@@ -59,13 +59,17 @@ vec4 a_Vec4(int[4] ar) {
     return vec4(ar[0], ar[1], ar[2], ar[3]);
 }
 
+mat4 set_M4(vec4 v) {
+    return mat4(v, v, v, v);
+}
+
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime) % 0xFFFF;     
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);  
         
-    vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);    
+    //vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);    
                 
     /*
     float[] _f0 = a_Float(_0), _f1 = a_Float(_1), _f2 = a_Float(_2), _f3 = a_Float(_3);  
@@ -74,9 +78,21 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     int[][](_0, _1, _2, _3);
     */
     
-    mat4 m = mat4(_v0, _v1, _v2, _v3); 
+    //mat4 m = mat4(_v0, _v1, _v2, _v3); 
     
-   
+    
+    mat4[16] m; // = mat4[]();
+    
+    /********* m16 **********
+    mat4 m = set_M4(_0), m1, m2, m3,
+        m4, m5, m6, m7,
+        m8, m9, m_A, m_B,
+        m_C, m_D, m_E, m_F;
+    */
+    
+    
+    
+    
     
     vec3 col = vec3(0);
     
@@ -84,7 +100,7 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     
     //if (xPix > 150 && xPix < 200 && yPix > 150 && yPix < 200) 
-    col = vec3(m[xPix % 4][yPix % 4]);
+    //col = vec3(m[xPix % 4][yPix % 4]);
     
     
     // Output to screen
