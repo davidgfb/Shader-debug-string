@@ -188,6 +188,7 @@ int _1e3 = 1000, _1e2 = 100, _1e1 = 10;
 int dec_A_Noton(int dec, int base) {
     /*
     int, int -> int
+    USO: int dec_A_Bin = dec_A_Noton(dec, 2), dec_A_Hex(dec, 16);
     */
     int[] ar_Noton = a_Ar_Noton(dec, base);   
     int _0 = ar_Noton[0], _1 = ar_Noton[1], _2 = ar_Noton[2], _3 = ar_Noton[3], 
@@ -217,8 +218,6 @@ int[4] separa_Decs(int dec) { //dec_A_Ar_Decs
     return int[](_0, _1, _2, _3); 
 }
 
-
-
 /*
 int dec_A_Bin(int dec) {
     
@@ -235,7 +234,6 @@ int dec_A_Bin(int dec) {
     return int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
 }
 */
-
 
 /*
 	Shadertoy's fancy entry function.
