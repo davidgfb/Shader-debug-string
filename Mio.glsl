@@ -4,6 +4,7 @@ usa bool -> int/float?
 
 /*
 mat4 set_Fila(mat4 m, int n_Fila, int[4] ar_Int) { 
+    //hay mas formas de hacerlo inicializando otra matriz 
     //OJO parece q se puede inicializar x cols o filas
     for (int i = 0; i < 4; i++) m[n_Fila][i] = float(ar_Int[i]);
         
@@ -59,28 +60,23 @@ vec4 a_Vec4(int[4] ar) {
 }
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime);     
+    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime) % 0xFFFF;     
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);  
         
     vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);    
                 
-    //float[] _f0 = a_Float(_0), _f1 = a_Float(_1), _f2 = a_Float(_2), _f3 = a_Float(_3);  
-    //vec4 v = vec4(_0);
-    //vec4 v = vec4(_0[0], _0[1], _0[2], _0[3]);
-    
-    mat4 m = mat4(_v0, _v1, _v2, _v3); //int[][](_0, _1, _2, _3);
-    
-    
-    
-    
     /*
-    m = set_Fila(m, 0, _0);
-    m = set_Fila(m, 1, _1);
-    m = set_Fila(m, 2, _2);
-    m = set_Fila(m, 3, _3);
+    float[] _f0 = a_Float(_0), _f1 = a_Float(_1), _f2 = a_Float(_2), _f3 = a_Float(_3);  
+    vec4 v = vec4(_0);
+    vec4 v = vec4(_0[0], _0[1], _0[2], _0[3]);
+    int[][](_0, _1, _2, _3);
     */
+    
+    mat4 m = mat4(_v0, _v1, _v2, _v3); 
+    
+   
     
     vec3 col = vec3(0);
     
