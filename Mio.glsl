@@ -59,12 +59,19 @@ vec4 a_Vec4(int[4] ar) {
     return vec4(ar[0], ar[1], ar[2], ar[3]);
 }
 
-mat4 set_M4(vec4 v) {
+mat4 set_M(vec4 v) {
     return mat4(v, v, v, v);
 }
 
-mat4[16] set_M16() {
+mat4 rella_M(int dec) {    
+    return set_M(vec4(dec));
+}
+
+mat4[16] set_M(int[256] ar) {
     mat4[16] m;
+    
+    //m[0], m[1], m[2], m[3], m[4], m[5]...
+    for (int i = 0; i < 16; i++) m[i] = rella_M(i); //i=...
 
     return m;
 }
@@ -86,8 +93,31 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     //mat4 m = mat4(_v0, _v1, _v2, _v3); 
     
+    vec3 col = vec3(0);
     
-    mat4[16] m; // = mat4[]();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    //mat4[16] m = mat4[]();
+    
+    /*
+    int[4] a;
+    int[] b = int[](0, 1);
+    
+    a = b;
+    */
+    
+    int[256] decs;
+    
+    //if (set_M(decs) == m) col = vec3(1);
     
     /********* m16 **********
     mat4 m = set_M4(_0), m1, m2, m3,
@@ -100,7 +130,6 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     
     
-    vec3 col = vec3(0);
     
     //int (1) -> mat4 (4^2 = 16), mat4 -> 16^2 = 256
     
