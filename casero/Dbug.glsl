@@ -1,15 +1,3 @@
-// I modified Hamneggs shader to use integer arithmetic, arrays and branches when
-// appropiate - iq
-
-
-// Simple Bitmap Text by Gerard Geer
-// 
-// Essentially a "hmm, how does that work?" educational rewrite of P_Malin's text renderer:
-// https://www.shadertoy.com/view/4sBSWW
-// Each character is a 4x5 bitmap encoded into a float, where each hex digit convieniently
-// represents one row.
-// License: Creative Commons CC0 1.0 Universal (CC-0) 
-
 const int font[] = int[](
  0x69f99, 0x79797, 0xe111e, 0x79997, 0xf171f, 0xf1711, 0xe1d96, 0x99f99, 
  0xf444f, 0x88996, 0x95159, 0x1111f, 0x9f999, 0x9bd99, 0x69996, 0x79971,
@@ -74,8 +62,6 @@ const int font[] = int[](
 #define CH_RPAR 52
 
 const ivec2 MAP_SIZE = ivec2(4,5);
-
-
 
 /*
 	Draws a character, given its encoded value, a position, size and
@@ -144,8 +130,7 @@ int drawIntCarriage( in int val, inout vec2 pos, in vec2 size, in vec2 uv, in in
 	Draws an integer to the screen. No side-effects, but be ever vigilant
 	so that your cup not overfloweth.
 */
-int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv )
-{
+int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv ) {
     vec2 p = vec2(pos);
     float s = sign(float(val));
     val *= int(s);
@@ -158,8 +143,7 @@ int drawInt( in int val, in vec2 pos, in vec2 size, in vec2 uv )
 /*
 	Prints a fixed point fractional value. Be even more careful about overflowing.
 */
-int drawFixed( in float val, in int places, in vec2 pos, in vec2 size, in vec2 uv )
-{
+int drawFixed( in float val, in int places, in vec2 pos, in vec2 size, in vec2 uv ) {
     float fval, ival;
     fval = modf(val, ival);
     
@@ -180,6 +164,37 @@ int drawFixed( in float val, in int places, in vec2 pos, in vec2 size, in vec2 u
 /*
 int dec_A_Bin(int dec) {
     return bin;
+}
+*/
+
+int[4] a_Ar_Noton(int dec, int base) { //notacion binaria 2 o hexadecimal 16    
+    float f_Base = float(base);
+    
+    int _3 = dec % base, _2 = dec / base % base, 
+        _1 = dec / int(pow(f_Base, 2.0)) % base, 
+        _0 = dec / int(pow(f_Base, 3.0)) % base; 
+    
+    return int[](_0, _1, _2, _3);
+}
+
+/*
+int a_Noton(int[4] ar_Noton, int base) {     
+    //dec (hex) -> 
+    //hexad 16 = 3 0s = 1000, dec
+    //bin 2 = 1 0s = 10
+    
+    int _0 = ar_Noton[0], _1 = ar_Noton[1], _2 = ar_Noton[2], _3 = ar_Noton[3];
+
+    //16/4=4, 2/
+
+    return ; //int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
+             //int(1e3) * _0 + int(1e2) * _1 + int(1e1) * _2 + _3
+}
+*/
+
+/*
+int[4] get_Dec_Ent() { //2345 = 2 * 1e3 - 3 * 1e2 - 4 * 1e1 - 5;
+    return int[]();
 }
 */
 
@@ -204,10 +219,12 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int chr = 0;
     
     //1e3 == 1*10^3 = 1000, 10e3 = 10*10^3 = 10 000!!
-    int dec = 0xF99F, _3 = dec % 16, _2 = dec / 16 % 16, 
-        _1 = dec / int(pow(16.0, 2.0)) % 16, _0 = dec / int(pow(16.0, 3.0)) % 16; 
-    int[] ar_Hex = int[](_0, _1, _2, _3);
-    int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
+    int dec = 0xF99F;
+    
+    int[] ar_Hex = a_Ar_Noton(dec, 16);
+    int _0 = ar_Hex[0], _1 = ar_Hex[1], _2 = ar_Hex[2], _3 = ar_Hex[3];
+    
+    //int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
       
     float pos = 0.3;
     
@@ -232,18 +249,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
     
     //division entera
-    ///*
+    /*
     //int dec = 1, 
     _3 = dec % 2, _2 = dec / 2 % 2, _1 = dec / int(pow(2.0, 2.0)) % 2, 
         _0 = dec / int(pow(2.0, 3.0)) % 2; 
     int[] ar_Bin = int[](_0, _1, _2, _3); 
     int nElems = ar_Bin.length(), bin = int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
-    //*/
-    
-    
-    
-    
-    
+    */
+      
     /*
     chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
     
@@ -251,97 +264,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
     */
-    
-    
-    
-    /*
-    // Bitmap text rendering!
-    chr += drawChar( CH_B, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_P, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_X, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_R, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_N, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_R, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_N, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_G, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_EXCL, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_EXCL, charPos, charSize, uv); charPos.x += spaceSize;
-    
-    // Today's Date: {date}
-    charPos = vec2(0.05, .75);
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_O, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_APST, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_S, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_BLNK, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_LPAR, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_D, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_Y, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_RPAR, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += .1;
-    // The date itself.
-    charPos.x += .3;
-    chr += drawIntCarriage( int(iDate.x), charPos, charSize, uv, 4);
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
-    chr += drawIntCarriage( int(iDate.z)+1, charPos, charSize, uv, 2);
-    chr += drawChar( CH_HYPH, charPos, charSize, uv); charPos.x-=spaceSize;
-    chr += drawIntCarriage( int(iDate.y)+1, charPos, charSize, uv, 2);
-    
-    // Shader uptime:
-    charPos = vec2(0.05, .6);
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_G, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_L, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_O, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_B, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_A, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_L, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_T, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_I, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_M, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_E, charPos, charSize, uv); charPos.x += spaceSize;
-    chr += drawChar( CH_COLN, charPos, charSize, uv); charPos.x += spaceSize;
-    // The uptime itself.
-    charPos.x += .3;
-    chr += drawFixed( iTime, 2, charPos, charSize, uv);
-    
-    % NO funciona
-    */
-    
-    
-   
-
-    
-    // Draw some text!
-    
+        
+    // Draw some text!    
 	fragColor = vec4(vec3(chr), 1.0); 
 }
