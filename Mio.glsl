@@ -40,7 +40,7 @@ int[4] separa_Decs(int dec) { //dec_A_Ar_Decs
 }
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = 0xF99F;    
+    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime); //0xF99F;    
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);    
