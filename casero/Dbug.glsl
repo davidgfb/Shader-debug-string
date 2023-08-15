@@ -167,7 +167,10 @@ int dec_A_Bin(int dec) {
 }
 */
 
-int[4] a_Ar_Noton(int dec, int base) { //notacion binaria 2 o hexadecimal 16    
+int[4] a_Ar_Noton(int dec, int base) { 
+    /*
+    USO: int[] ar_Bin = a_Ar_Noton(bin, 2), ar_Hex = a_Ar_Noton(hex, 16);
+    */
     float f_Base = float(base);
     
     int _3 = dec % base, _2 = dec / base % base, 
