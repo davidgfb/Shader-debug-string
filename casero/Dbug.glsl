@@ -236,6 +236,13 @@ int dec_A_Bin(int dec) {
 */
 
 /*
+void impr_Hex(int dec) {
+    //10 = A, 11 = B, 12 = C, 13 = D, 14 = E
+    if (dec > 9 && dec < 15) letras[n + offset];
+}
+*/
+
+/*
 	Shadertoy's fancy entry function.
 */
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
@@ -260,17 +267,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int[] ar_Hex = a_Ar_Noton(dec, 16);
     int _0 = ar_Hex[0], _1 = ar_Hex[1], _2 = ar_Hex[2], _3 = ar_Hex[3];
     
-    //int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
-      
-    float pos = 0.2;
-    
-    charPos = vec2(pos, 0.8);  
+    //int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;    
+    charPos = vec2(0.2, 0.8);  
     
     chr += drawIntCarriage( dec, charPos, charSize, uv, 4); 
-    charPos.x += 1.0 / 3.0;
+    charPos.x += 0.25;
 
     chr += drawChar( CH_D, charPos, charSize, uv); 
-    charPos.x += 1.0 / 3.0;
+    charPos.x += 0.05;
     
     /*
     chr += drawChar( CH_E, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
@@ -278,7 +282,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     */
     
     chr += drawChar( CH_EQUL, charPos, charSize, uv); 
-    charPos.x += 1.0 / 3.0;
+    charPos.x += 0.2;
 
     chr += drawIntCarriage( _0, charPos, charSize, uv, 4); 
     charPos.x += 1.0 / 3.0; 
@@ -292,24 +296,24 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
     chr += drawChar( CH_H, charPos, charSize, uv); 
-    charPos.x += 1.0 / 3.0;
+    charPos.x += 0.05;
     chr += drawChar( CH_EQUL, charPos, charSize, uv); 
     charPos.x += 1.0 / 3.0;
 
     _0 = dec_A_Noton(_0, 2), _1 = dec_A_Noton(_1, 2), _2 = dec_A_Noton(_2, 2), 
     _3 = dec_A_Noton(_3, 2);
       
-    charPos = vec2(0.2, 0.6);   
+    charPos = vec2(0.1, 0.6);   
     
+    chr += drawChar( CH_EQUL, charPos, charSize, uv); charPos.x += 0.2;
+   
     chr += drawIntCarriage( _0, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;    
     chr += drawIntCarriage( _1, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;
     chr += drawIntCarriage( _2, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;
     chr += drawIntCarriage( _3, charPos, charSize, uv, 4); charPos.x += 0.2;
    
-    chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
-
-    
-    
+    chr += drawChar( CH_B, charPos, charSize, uv); 
+ 
     //division entera
     /*
     //int dec = 1, 
