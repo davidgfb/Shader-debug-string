@@ -1,8 +1,10 @@
+/*
+usa bool -> int/float?
+*/
+
 mat4 set_Fila(mat4 m, int n_Fila, int[4] ar_Int) { 
-    for (int i = 0; i < 4; i++) {
-        m[n_Fila][i] = float(ar_Int[i]);
-    }
-    
+    for (int i = 0; i < 4; i++) m[n_Fila][i] = float(ar_Int[i]);
+        
     return m;
 }
 
@@ -40,7 +42,7 @@ int[4] separa_Decs(int dec) { //dec_A_Ar_Decs
 }
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime); //0xF99F;    
+    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime);     
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);    
@@ -54,9 +56,15 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
 
     vec3 col = vec3(0);
     
+    //int (1) -> mat4 (4^2 = 16), mat4 -> 16^2 = 256
+    
+    
+    
+    /*
     if (xPix > 150 && xPix < 200 && yPix > 150 && yPix < 200) 
         col = vec3(m[xPix % 4][yPix % 4]);
-
+    */
+    
     // Output to screen
     fragColor = vec4(col,1.0);
 }
