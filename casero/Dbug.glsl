@@ -266,24 +266,35 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     charPos = vec2(pos, 0.8);  
     
-    chr += drawIntCarriage( dec, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( dec, charPos, charSize, uv, 4); 
+    charPos.x += 1.0 / 3.0;
 
-    chr += drawChar( CH_D, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);    
+    chr += drawChar( CH_D, charPos, charSize, uv); 
+    charPos.x += 1.0 / 3.0;
+    
     /*
     chr += drawChar( CH_E, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
     chr += drawChar( CH_C, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
     */
-    chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+    
+    chr += drawChar( CH_EQUL, charPos, charSize, uv); 
+    charPos.x += 1.0 / 3.0;
 
-    chr += drawIntCarriage( _0, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
-    chr += drawIntCarriage( _1, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
-    chr += drawIntCarriage( _2, charPos, charSize, uv, 4); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
-    chr += drawIntCarriage( _3, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawIntCarriage( _0, charPos, charSize, uv, 4); 
+    charPos.x += 1.0 / 3.0; 
+    chr += drawIntCarriage( _1, charPos, charSize, uv, 4); 
+    charPos.x += 1.0 / 3.0;
+    chr += drawIntCarriage( _2, charPos, charSize, uv, 4); 
+    charPos.x += 1.0 / 3.0;
+    chr += drawIntCarriage( _3, charPos, charSize, uv, 4); 
+    charPos.x += 0.2;
 
     //chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
-    chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
-    chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawChar( CH_H, charPos, charSize, uv); 
+    charPos.x += 1.0 / 3.0;
+    chr += drawChar( CH_EQUL, charPos, charSize, uv); 
+    charPos.x += 1.0 / 3.0;
 
     _0 = dec_A_Noton(_0, 2), _1 = dec_A_Noton(_1, 2), _2 = dec_A_Noton(_2, 2), 
     _3 = dec_A_Noton(_3, 2);
