@@ -262,7 +262,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     //int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
       
-    float pos = 0.3;
+    float pos = 0.2;
     
     charPos = vec2(pos, 0.8);  
     
@@ -283,16 +283,18 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
     chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    chr += drawChar( CH_EQUL, charPos, charSize, uv); pos += pow(6.0, -1.0); charPos = vec2(pos, 0.8);
+
+    _0 = dec_A_Noton(_0, 2), _1 = dec_A_Noton(_1, 2), _2 = dec_A_Noton(_2, 2), 
+    _3 = dec_A_Noton(_3, 2);
+      
+    charPos = vec2(0.2, 0.6);   
     
-    charPos = vec2(0.3, 0.6);  
-    
-    
-    
-    
-    
-    
-    
-    
+    chr += drawIntCarriage( _0, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;    
+    chr += drawIntCarriage( _1, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;
+    chr += drawIntCarriage( _2, charPos, charSize, uv, 4); charPos.x += 1.0 / 3.0;
+    chr += drawIntCarriage( _3, charPos, charSize, uv, 4); charPos.x += 0.2;
+   
     chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
     
