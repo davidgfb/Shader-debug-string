@@ -167,15 +167,17 @@ int dec_A_Bin(int dec) {
 }
 */
 
-int[4] a_Ar_Noton(int dec, int base) { 
+int potia(int x, int y) {
+    return int(pow(float(x), float(y)));
+}
+
+int[4] a_Ar_Noton(int dec, int base) {
     /*
     USO: int[] ar_Bin = a_Ar_Noton(bin, 2), ar_Hex = a_Ar_Noton(hex, 16);
-    */
-    float f_Base = float(base);
-    
-    int _3 = dec % base, _2 = dec / base % base, 
-        _1 = dec / int(pow(f_Base, 2.0)) % base, 
-        _0 = dec / int(pow(f_Base, 3.0)) % base; 
+    posiblemente mas lento q dec_A_Ar_Dec
+    */    
+    int _3 = dec % base, _2 = dec / base % base, _1 = dec / potia(base, 2) % base, 
+        _0 = dec / potia(base, 3) % base;  
     
     return int[](_0, _1, _2, _3);
 }
@@ -202,7 +204,6 @@ int[4] dec_A_Ar_Dec(int dec) {
     int(1e3), _1e2 = int(1e2), _1e1 = int(1e1),
     2345 / 1000 = 2, 2345 - 2000 -> 345 / 100 = 3 
     2345 - 2000 -> 345 - 300 -> 45 / 10 = 4, 2345 - 2000 -> 345 - 300 -> 45 - 40 = 5   
-    int dec = 2345,
     */
     int _1e3 = 1000, _1e2 = 100, _1e1 = 10, _0 = dec / _1e3, 
         _1 = dec / _1e2 - _1e1 * _0, _2 = dec / _1e1 -_1e2 * _0 -_1e1 * _1, 
