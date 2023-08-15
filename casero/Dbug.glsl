@@ -204,18 +204,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int chr = 0;
     
     //1e3 == 1*10^3 = 1000, 10e3 = 10*10^3 = 10 000!!
-    int dec = 0xF99F, _3 = dec % 16, _2 = dec / 16 % 16, _1 = dec / 256 % 16, 
-        _0 = dec / 4096 % 16; 
+    int dec = 0xF99F, _3 = dec % 16, _2 = dec / 16 % 16, 
+        _1 = dec / int(pow(16.0, 2.0)) % 16, _0 = dec / int(pow(16.0, 3.0)) % 16; 
     int[] ar_Hex = int[](_0, _1, _2, _3);
     int hex = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
-    
-    //division entera
-    /*
-    int dec = 1, _3 = dec % 2, _2 = dec / 2 % 2, _1 = dec / 4 % 2, _0 = dec / 8 % 2; 
-    int[] a_Bin = int[](_0, _1, _2, _3); 
-    int nElems = a_Bin.length(), bin = 1000 * _0 + 100 * _1 + 10 * _2 + _3;
-    */
-     
+      
     float pos = 0.3;
     
     charPos = vec2(pos, 0.8);  
@@ -238,7 +231,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
     
-    
+    //division entera
+    ///*
+    //int dec = 1, 
+    _3 = dec % 2, _2 = dec / 2 % 2, _1 = dec / int(pow(2.0, 2.0)) % 2, 
+        _0 = dec / int(pow(2.0, 3.0)) % 2; 
+    int[] ar_Bin = int[](_0, _1, _2, _3); 
+    int nElems = ar_Bin.length(), bin = int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
+    //*/
     
     
     
