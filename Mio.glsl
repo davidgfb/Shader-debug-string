@@ -77,6 +77,25 @@ mat4[16] set_M(int[256] ar) {
 }
 
 
+/*
+int[4] push(int[4] ar, int dec, int ult_Pos_Libre) {
+    
+    //ultimo elem de lista es la ult pos libre
+    
+    //ar[ar.length() - 1] = ult_Pos_Libre++;    
+    ar[ult_Pos_Libre] = dec; //si fuera ultima pos sobrescribiria
+    
+    return ar;
+}
+*/
+
+
+/* hay q especificar tamaño de ar1!! fuck
+int[] push(int[256] ar, int[] ar1, int ult_Pos_Libre) {
+
+    return int[];
+}
+*/
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime) % 0xFFFF;     
@@ -98,23 +117,22 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     vec3 col = vec3(0);
     
     
-    //********************************
-    
     int[] ar1 = int[](1, 2);
-    int[4] ar;       
-    int ult_Pos_Libre = 0, ar1_Tam = ar1.length(); 
-    //solo añadimos 1 elemento, de 1 en 1
+    //int[256] ar;       
+    int[4] ar;
+    int ult_Pos_Libre = 2, ar1_Tam = ar1.length(); 
     
-    for (int i = 0; i < ar1_Tam && ar.length() - ult_Pos_Libre + 2 > ar1_Tam; 
-        i++, ult_Pos_Libre++) ar[ult_Pos_Libre] = ar1[i]; 
-        
     /*
+    for (int i = 0; i < ar1_Tam && ar.length() - ult_Pos_Libre + 2 > ar1_Tam; 
+        i++, ult_Pos_Libre++) //ar = push(ar, ar1[i], ult_Pos_Libre); //ar[ult_Pos_Libre] = ar1[i]; 
+    */  
+    ///*
     //if (ar == int[](1,2,0,0))  //0
     //if (ar == int[](0, 1, 2, 0)) //1
-    //if (ar == int[](0,0, 1,2))  //2
+    if (ar == int[](0,0, 1,2))  //2
     //3 NO CABE!!
-    //    col = vec3(1);
-    */
+        col = vec3(1);
+    //*/
     
     
     
@@ -153,7 +171,7 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     a = b;
     */
     
-    int[256] decs;
+    
     
     //if (set_M(decs) == m) col = vec3(1);
     
