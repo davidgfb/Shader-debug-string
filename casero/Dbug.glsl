@@ -173,6 +173,7 @@ int potia(int x, int y) {
 
 int[4] a_Ar_Noton(int dec, int base) {
     /*
+    PRE: n < 5, n € Z
     USO: int[] ar_Bin = a_Ar_Noton(bin, 2), ar_Hex = a_Ar_Noton(hex, 16);
     posiblemente mas lento q dec_A_Ar_Dec
     */    
@@ -180,6 +181,22 @@ int[4] a_Ar_Noton(int dec, int base) {
         _0 = dec / potia(base, 3) % base;  
     
     return int[](_0, _1, _2, _3);
+}
+
+int _1e3 = 1000, _1e2 = 100, _1e1 = 10;
+
+int dec_A_Noton(int dec, int base) {
+    int[] ar_Noton = a_Ar_Noton(dec, base);   
+    int _0 = ar_Noton[0], _1 = ar_Noton[1], _2 = ar_Noton[2], _3 = ar_Noton[3], 
+        noton = 0;
+    
+    //binario
+    if (base == 2) noton = int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
+        
+    //hexadecimal, notacion NO se reusa
+    else if (base == 16) noton = int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
+    
+    return noton;
 }
 
 /*
@@ -205,12 +222,31 @@ int[4] dec_A_Ar_Dec(int dec) {
     2345 / 1000 = 2, 2345 - 2000 -> 345 / 100 = 3 
     2345 - 2000 -> 345 - 300 -> 45 / 10 = 4, 2345 - 2000 -> 345 - 300 -> 45 - 40 = 5   
     */
-    int _1e3 = 1000, _1e2 = 100, _1e1 = 10, _0 = dec / _1e3, 
-        _1 = dec / _1e2 - _1e1 * _0, _2 = dec / _1e1 -_1e2 * _0 -_1e1 * _1, 
+    int _0 = dec / _1e3, _1 = dec / _1e2 - _1e1 * _0, 
+        _2 = dec / _1e1 -_1e2 * _0 -_1e1 * _1, 
         _3 = ((dec - _1e3 * _0) - _1e2 * _1) - _1e1 * _2;
     
     return int[](_0, _1, _2, _3); 
 }
+
+
+
+/*
+int dec_A_Bin(int dec) {
+    
+    PRE: n < 5, n € Z
+    
+    int _3 = dec % 2, _2 = dec / 2 % 2, _1 = dec / //int(pow(2.0, 2.0)) % 2, 
+        _0 = dec / int(pow(2.0, 3.0)) % 2; 
+        
+    
+    int[] ar_Bin = int[](_0, _1, _2, _3); 
+    int nElems = ar_Bin.length(), 
+    
+        
+    return int(1e3) * _0 + int(1e2) * _1 + 10 * _2 + _3;
+}
+*/
 
 
 /*
@@ -219,7 +255,6 @@ int[4] dec_A_Ar_Dec(int dec) {
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec3 col = vec3(0);
 
-    ///*
     // Get Y-normalized UV coords.
 	vec2 uv = fragCoord / iResolution.y;
         
@@ -262,6 +297,19 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //chr += drawIntCarriage( hex, charPos, charSize, uv, 4); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
 
     chr += drawChar( CH_H, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+    
+    charPos = vec2(0.3, 0.6);  
+    
+    
+    
+    
+    
+    
+    
+    
+    chr += drawChar( CH_B, charPos, charSize, uv); pos += pow(20.0, -1.0); charPos = vec2(pos, 0.8);
+
+    
     
     //division entera
     /*
