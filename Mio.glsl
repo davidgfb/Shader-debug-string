@@ -63,6 +63,12 @@ mat4 set_M4(vec4 v) {
     return mat4(v, v, v, v);
 }
 
+mat4[16] set_M16() {
+    mat4[16] m;
+
+    return m;
+}
+
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime) % 0xFFFF;     
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
