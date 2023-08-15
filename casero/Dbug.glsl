@@ -186,6 +186,9 @@ int[4] a_Ar_Noton(int dec, int base) {
 int _1e3 = 1000, _1e2 = 100, _1e1 = 10;
 
 int dec_A_Noton(int dec, int base) {
+    /*
+    int, int -> int
+    */
     int[] ar_Noton = a_Ar_Noton(dec, base);   
     int _0 = ar_Noton[0], _1 = ar_Noton[1], _2 = ar_Noton[2], _3 = ar_Noton[3], 
         noton = 0;
@@ -199,24 +202,9 @@ int dec_A_Noton(int dec, int base) {
     return noton;
 }
 
-/*
-int a_Noton(int[4] ar_Noton, int base) {     
-    //dec (hex) -> 
-    //hexad 16 = 3 0s = 1000, dec
-    //bin 2 = 1 0s = 10
-    
-    int _0 = ar_Noton[0], _1 = ar_Noton[1], _2 = ar_Noton[2], _3 = ar_Noton[3];
-
-    //16/4=4, 2/
-
-    return ; //int(1e12) * _0 + int(1e8) * _1 + int(1e4) * _2 + _3;
-             //int(1e3) * _0 + int(1e2) * _1 + int(1e1) * _2 + _3
-}
-*/
-
-
-int[4] dec_A_Ar_Dec(int dec) { 
+int[4] separa_Decs(int dec) { //dec_A_Ar_Decs
     /*
+    int -> ar, int[4]
     2345 = 2 * 1e3 - 3 * 1e2 - 4 * 1e1 - 5;    
     int(1e3), _1e2 = int(1e2), _1e1 = int(1e1),
     2345 / 1000 = 2, 2345 - 2000 -> 345 / 100 = 3 
