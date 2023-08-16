@@ -37,7 +37,7 @@ vec4 a_Vec4(int[4] ar) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {   
     // Time varying pixel color
-    vec3 col = vec3(0);
+    vec3 col = (vec3(0,0,1) + vec3(1,1,1)) / 4.0;
         
     //int resX = int(iResolution.y),     
     /*
