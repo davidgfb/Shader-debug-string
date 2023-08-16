@@ -96,12 +96,11 @@ int[] push(int[256] ar, int[] ar1, int ult_Pos_Libre) {
 */
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = int(iTime) % 0xFFFF;     
+    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = 0xF99F; //dec = int(iTime) % 0xFFFF;     
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
-        _3 = separa_Decs(ar_Hex[3]);  
-        
-    //vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);    
+        _3 = separa_Decs(ar_Hex[3]);         
+    vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);    
                 
     /*
     float[] _f0 = a_Float(_0), _f1 = a_Float(_1), _f2 = a_Float(_2), _f3 = a_Float(_3);  
@@ -110,27 +109,15 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     int[][](_0, _1, _2, _3);
     */
     
-    //mat4 m = mat4(_v0, _v1, _v2, _v3); 
-    
+    mat4 m = mat4(_v0, _v1, _v2, _v3);     
     vec3 col = vec3(0);
-    
-    //mejor dejamos 'clavado' en las decenas
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+    /*
+    mejor dejamos 'clavado' en las decenas/centenas
+    400x400, 400/4=4, 0: 0-99, 1: 100-199, 2: 200-299, 3: 300-399
+    */    
+    col = vec3(m[xPix / 4][yPix / 4]);
+       
     /*
     int[] ar1 = int[](1, 2);
     //int[256] ar;       
@@ -180,7 +167,7 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     
     //if (xPix > 150 && xPix < 200 && yPix > 150 && yPix < 200) 
-    //col = vec3(m[xPix % 4][yPix % 4]);
+    //
     
     
     // Output to screen
