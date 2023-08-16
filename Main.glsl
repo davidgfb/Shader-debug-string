@@ -38,10 +38,8 @@ vec4 a_Vec4(int[4] ar) {
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {   
     // Time varying pixel color
     vec3 col = vec3(0);
-    
-    
-    //int resX = int(iResolution.y), 
-    
+        
+    //int resX = int(iResolution.y),     
     /*
     vec2 pix = vec2(iResolution.y - fragCoord.y, fragCoord.x);
     int xPix = int(pix.x), yPix = int(pix.y);
@@ -49,11 +47,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
         
     int dec = 0xF99F;   
     
+    //int[](0xf, 9, 9, 0xf) -> ar_Bin
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
-        ar_Hex = a_Ar_Noton(dec, 16); //int[](0xf, 9, 9, 0xf) -> ar_Bin
-        
-    int[] _0 = a_Ar_Noton(ar_Hex[0], 2), _1 = a_Ar_Noton(ar_Hex[1], 2), 
-        _2 = a_Ar_Noton(ar_Hex[2], 2), _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
+        ar_Hex = a_Ar_Noton(dec, 16), _0 = a_Ar_Noton(ar_Hex[0], 2), 
+        _1 = a_Ar_Noton(ar_Hex[1], 2), _2 = a_Ar_Noton(ar_Hex[2], 2), 
+        _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
     
     /*
     int[] _0 = separa_Decs(ar_Hex[0]), 
@@ -68,30 +66,23 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     mat4 m = mat4(v[0], v[1], v[2], v[3]);
     
     //***** debug ******
-    
-    
     //if (_0 == int[](1,1,1,1))
-    
-    
     //if (ar_Hex == int[](0xf, 9, 9, 0xf))
     ///*
+    
     int xPix = pix[0], yPix = pix[1]; 
     
     if (xPix < 400 && yPix < 400)
         col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
+    
     //*/
-    
-    
-    //int[] a = int[](1,2);
-    
-    
+    //int[] a = int[](1,2);   
     //if (_2 == int[](1,0,0,1)) //x q no?
     /*
     //if (pix[1] == 100) //if (yPix == 100)
     //if (pix[0] == 100) //if (xPix == 100) 
         col = vec3(1); 
-    */
-    
+    */    
 
     // Output to screen
     fragColor = vec4(col,1.0);
