@@ -75,8 +75,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     //if (ar_Hex == int[](0xf, 9, 9, 0xf))
     
+    int xPix = pix[0], yPix = pix[1]; 
     
-    
+    if (xPix < 400 && yPix < 400)
+        col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
     
     
     
@@ -87,7 +89,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     ///*
     //if (pix[1] == 100) //if (yPix == 100)
     //if (pix[0] == 100) //if (xPix == 100) 
-        col = vec3(1); 
+        //col = vec3(1); 
     //*/
     
 
