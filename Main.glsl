@@ -45,7 +45,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int xPix = int(pix.x), yPix = int(pix.y);
     */
         
-    int dec = 0xF99F;   
+    int dec = int(iTime); //0xF99F;   
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
