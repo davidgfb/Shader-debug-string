@@ -63,6 +63,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
+    
+    //_0, _1, _2, _3 podrian ser bool[]
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
         ar_Hex = a_Ar_Noton(dec, 16), _0 = a_Ar_Noton(ar_Hex[0], 2), 
         _1 = a_Ar_Noton(ar_Hex[1], 2), _2 = a_Ar_Noton(ar_Hex[2], 2), 
@@ -73,6 +75,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);  
     */
+    
     
     vec4[] v = vec4[](a_Vec4(_0), a_Vec4(_1), a_Vec4(_2), a_Vec4(_3));
       
