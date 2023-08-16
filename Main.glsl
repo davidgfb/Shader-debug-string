@@ -49,11 +49,16 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     NO vale ponerlo en decimal. Hay q usar notacion '0xh' 
     0x1,0x1,0x1,0x1->1111d NO!->0x1111h (4369d) SÍ 
     */
-    int[] ceros = int[](0xF99F, 0x6996, 0x2552, 0x7557), unos = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627);
+    int[] ceros = int[](0xF99F, 0x6996, 0x2552, 0x7557), 
+        unos = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627);
     //int[] nums = int[](0xF99F, 0x1111); 
     
-        
-    int dec = ceros[int(iTime) % ceros.length()]; //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; //int(iTime) % 0xFFFF; //0xF99F;   
+    /*
+    //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; 
+    //int(iTime) % 0xFFFF; //0xF99F;   
+    */    
+    int dec = ceros[int(iTime) % ceros.length()]; 
+    
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
