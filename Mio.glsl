@@ -76,7 +76,6 @@ mat4[16] set_M(int[256] ar) {
     return m;
 }
 
-
 /*
 int[4] push(int[4] ar, int dec, int ult_Pos_Libre) {
     
@@ -88,7 +87,6 @@ int[4] push(int[4] ar, int dec, int ult_Pos_Libre) {
     return ar;
 }
 */
-
 
 /* hay q especificar tamaño de ar1!! fuck
 int[] push(int[256] ar, int[] ar1, int ult_Pos_Libre) {
@@ -116,35 +114,40 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     vec3 col = vec3(0);
     
+    //mejor dejamos 'clavado' en las decenas
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     int[] ar1 = int[](1, 2);
     //int[256] ar;       
     int[4] ar;
     int ult_Pos_Libre = 2, ar1_Tam = ar1.length(); 
-    
-    /*
+        
     for (int i = 0; i < ar1_Tam && ar.length() - ult_Pos_Libre + 2 > ar1_Tam; 
         i++, ult_Pos_Libre++) //ar = push(ar, ar1[i], ult_Pos_Libre); //ar[ult_Pos_Libre] = ar1[i]; 
     */  
-    ///*
+    /*
     //if (ar == int[](1,2,0,0))  //0
     //if (ar == int[](0, 1, 2, 0)) //1
     if (ar == int[](0,0, 1,2))  //2
     //3 NO CABE!!
         col = vec3(1);
-    //*/
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
+    */
+            
     /*2, 2<4-2=2, 2sig
     for (ult_Pos; ult_Pos < ar.length() - ar1.length(); ult_Pos++) { 
         //int pos = ar1.length(); //2
@@ -152,16 +155,9 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
         //if (ult_Pos < pos) pos = 0; //1<2, ult_Pos
         
         //ar[ult_Pos] = ar1[ult_Pos - pos]; //
-    }
- 
-    
+    }    
     */
-    
-    
-    
-
-    
-
+   
     //mat4[16] m = mat4[]();
     
     /*
@@ -170,9 +166,7 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     
     a = b;
     */
-    
-    
-    
+        
     //if (set_M(decs) == m) col = vec3(1);
     
     /********* m16 **********
@@ -181,12 +175,7 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
         m8, m9, m_A, m_B,
         m_C, m_D, m_E, m_F;
     */
-    
-    
-    
-    
-    
-    
+        
     //int (1) -> mat4 (4^2 = 16), mat4 -> 16^2 = 256
     
     
