@@ -122,7 +122,13 @@ void mainImage( out vec4 fragColor, vec2 fragCoord ) {
     mejor dejamos 'clavado' en las decenas/centenas
     400x400, 400/4=4, 0: 0-99, 1: 100-199, 2: 200-299, 3: 300-399
     */    
-    vec3 col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
+    //vec3 col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
+    vec3 col = vec3(0);
+    
+    if (_0 == int[](1,1,1,1))
+    //if (_v0 == vec4(1,1,1,1)) 
+        col = vec3(1);
+       
        
     /*
     int[] ar1 = int[](1, 2);
