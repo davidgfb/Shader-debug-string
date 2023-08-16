@@ -52,7 +52,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
         ar_Hex = a_Ar_Noton(dec, 16); //int[](0xf, 9, 9, 0xf) -> ar_Bin
         
-    int[] _0 = a_Ar_Noton(ar_Hex[0], 2); //, _1, _2, _3; //ar_Bin, ar_Bin1...
+    int[] _0 = a_Ar_Noton(ar_Hex[0], 2), _1 = a_Ar_Noton(ar_Hex[1], 2), 
+        _2 = a_Ar_Noton(ar_Hex[3], 2), _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
     
     /*
     int[] _0 = separa_Decs(ar_Hex[0]), 
@@ -60,11 +61,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
         _3 = separa_Decs(ar_Hex[3]);  
     */
     
-    
-    
+    vec4[] v = vec4[](a_Vec4(_0), a_Vec4(_1), a_Vec4(_2), a_Vec4(_3));
+      
     //vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);
     
-    //mat4 m = mat4(_v0, _v1, _v2, _v3);
+    mat4 m = mat4(v[0], v[1], v[2], v[3]);
     
     //***** debug ******
     
