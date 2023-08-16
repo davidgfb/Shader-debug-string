@@ -96,8 +96,11 @@ int[] push(int[256] ar, int[] ar1, int ult_Pos_Libre) {
 */
 
 void mainImage( out vec4 fragColor, vec2 fragCoord ) {
-    //dec = int(iTime) % 0xFFFF;     
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), dec = 0xF99F; 
+    //dec = int(iTime) % 0xFFFF;    
+    /*
+    xPix <-> yPix
+    */
+    int yPix = int(fragCoord.y), xPix = int(fragCoord.x), dec = 0xF99F; 
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);         
