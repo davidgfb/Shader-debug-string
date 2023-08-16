@@ -58,8 +58,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     
     /*
-    if (yPix == 100)
-    //if (resX - xPix == 100) 
+    //if (yPix == 100)
+    if (xPix == 100) 
         col = vec3(1); 
     */
     
