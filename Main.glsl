@@ -41,14 +41,21 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     
     
-    int xPix = int(fragCoord.y), yPix = int(fragCoord.x), 
-        resX = int(iResolution.y), dec = 0xF99F; 
+    int resX = int(iResolution.y), xPix = resX - int(fragCoord.y), 
+        yPix = int(fragCoord.x), dec = 0xF99F; 
     int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);         
     vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);
     
     mat4 m = mat4(_v0, _v1, _v2, _v3);
+    
+    
+    
+    
+    
+    
+    
     
     /*
     if (yPix == 100)
