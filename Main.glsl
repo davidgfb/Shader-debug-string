@@ -44,8 +44,16 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 pix = vec2(iResolution.y - fragCoord.y, fragCoord.x);
     int xPix = int(pix.x), yPix = int(pix.y);
     */
+    
+    /*
+    NO vale ponerlo en decimal. Hay q usar notacion '0xh' 
+    0x1,0x1,0x1,0x1->1111d NO!->0x1111h (4369d) SÍ 
+    */
+    int[] unos = int[](0x1111);
+    //int[] nums = int[](0xF99F, 0x1111); 
+    
         
-    int dec = int(iTime) % 0xFFFF; //0xF99F;   
+    int dec = unos[0]; //nums[1]; //int(iTime) % nums.length()]; //int(iTime) % 0xFFFF; //0xF99F;   
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
