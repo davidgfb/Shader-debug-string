@@ -2,7 +2,7 @@ int potia(int x, int y) {
     return int(pow(float(x), float(y)));
 }
 
-int[4] a_Ar_Noton(int dec, int base) {
+int[4] a_Ar_Noton(int dec, int base) { //SOLO para binario?
     /*
     PRE: n < 5, n € Z
     USO: int[] ar_Bin = a_Ar_Noton(bin, 2), ar_Hex = a_Ar_Noton(hex, 16);
@@ -50,25 +50,44 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int dec = 0xF99F;   
     
     int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
-        ar_Hex = a_Ar_Noton(dec, 16), _0 = separa_Decs(ar_Hex[0]), 
-        _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
-        _3 = separa_Decs(ar_Hex[3]);         
-    vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);
+        ar_Hex = a_Ar_Noton(dec, 16); //int[](0xf, 9, 9, 0xf) -> ar_Bin
+        
+    int[] _0 = a_Ar_Noton(ar_Hex[0], 2); //, _1, _2, _3; //ar_Bin, ar_Bin1...
     
-    mat4 m = mat4(_v0, _v1, _v2, _v3);
+    /*
+    int[] _0 = separa_Decs(ar_Hex[0]), 
+        _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
+        _3 = separa_Decs(ar_Hex[3]);  
+    */
+    
+    
+    
+    //vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);
+    
+    //mat4 m = mat4(_v0, _v1, _v2, _v3);
     
     //***** debug ******
     
     
-    int[] a = int[](1,2);
+    //if (_0 == int[](1,1,1,1))
+    
+    
+    //if (ar_Hex == int[](0xf, 9, 9, 0xf))
     
     
     
-    /*
-    if (pix[1] == 100) //if (yPix == 100)
-    if (pix[0] == 100) //if (xPix == 100) 
+    
+    
+    
+    //int[] a = int[](1,2);
+    
+    
+    
+    ///*
+    //if (pix[1] == 100) //if (yPix == 100)
+    //if (pix[0] == 100) //if (xPix == 100) 
         col = vec3(1); 
-    */
+    //*/
     
 
     // Output to screen
