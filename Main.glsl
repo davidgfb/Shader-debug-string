@@ -53,7 +53,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
         ar_Hex = a_Ar_Noton(dec, 16); //int[](0xf, 9, 9, 0xf) -> ar_Bin
         
     int[] _0 = a_Ar_Noton(ar_Hex[0], 2), _1 = a_Ar_Noton(ar_Hex[1], 2), 
-        _2 = a_Ar_Noton(ar_Hex[3], 2), _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
+        _2 = a_Ar_Noton(ar_Hex[2], 2), _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
     
     /*
     int[] _0 = separa_Decs(ar_Hex[0]), 
@@ -74,23 +74,23 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     
     //if (ar_Hex == int[](0xf, 9, 9, 0xf))
-    
+    ///*
     int xPix = pix[0], yPix = pix[1]; 
     
     if (xPix < 400 && yPix < 400)
         col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
-    
+    //*/
     
     
     //int[] a = int[](1,2);
     
     
-    
-    ///*
+    //if (_2 == int[](1,0,0,1)) //x q no?
+    /*
     //if (pix[1] == 100) //if (yPix == 100)
     //if (pix[0] == 100) //if (xPix == 100) 
-        //col = vec3(1); 
-    //*/
+        col = vec3(1); 
+    */
     
 
     // Output to screen
