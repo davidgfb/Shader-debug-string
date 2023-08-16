@@ -55,9 +55,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     /*
     //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; 
-    //int(iTime) % 0xFFFF; //0xF99F;   
+    //int(iTime) % 0xFFFF; //0xF99F; 
+    //ceros[ceros.length() - 1];
+    //ceros[int(iTime) % ceros.length()]; 
     */    
-    int dec = ceros[int(iTime) % ceros.length()]; 
+    int dec = unos[int(iTime) % unos.length()]; 
     
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
