@@ -53,9 +53,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int[] _0s = int[](0xF99F, 0x6996, 0x2552, 0x7557), 
         _1s = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627),
         _As = int[](0xf9f9, 0x69f9, 0x7575, 0x2575),
-        //_Bs = int[](0xf9f9), //hay q ampliar otra fila
+        _bs = int[](0x8f9f, 0x4757), //minusculas! para mayus habria q ampliar dimensiones fila
         nums = int[](_0s[t % _0s.length()], _1s[t % _1s.length()]),
-        letras = int[](_As[t % _As.length()]); //, _Bs[t % _Bs.length()]); 
+        letras = int[](_As[t % _As.length()], _bs[t % _bs.length()]),
+        glifos = int[](_0s[t % _0s.length()], _1s[t % _1s.length()], 
+            _As[t % _As.length()], _bs[t % _bs.length()]); 
     
     /*
     //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; 
@@ -63,7 +65,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //ceros[ceros.length() - 1];
     //ceros[int(iTime) % ceros.length()]; 
     */    
-    int dec = letras[t % letras.length()]; //_A[_A.length() - 1]; //t % _A.length()]; //nums[t % nums.length()]; 
+    int dec = glifos[t % glifos.length()]; //letras[t % letras.length()]; //_A[_A.length() - 1]; //t % _A.length()]; //nums[t % nums.length()]; 
     
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
