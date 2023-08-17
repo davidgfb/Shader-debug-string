@@ -50,11 +50,12 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     0x1,0x1,0x1,0x1->1111d NO!->0x1111h (4369d) SÍ 
     */
     int t = int(iTime);
-    int[] ceros = int[](0xF99F, 0x6996, 0x2552, 0x7557), 
-        unos = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627),
-        _A = int[](0xf9f9, 0x69f9, 0x7575, 0x2575),
-        nums = int[](ceros[t % ceros.length()], unos[t % unos.length()]),
-        letras = int[](_A[t % _A.length()]); 
+    int[] _0s = int[](0xF99F, 0x6996, 0x2552, 0x7557), 
+        _1s = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627),
+        _As = int[](0xf9f9, 0x69f9, 0x7575, 0x2575),
+        //_Bs = int[](0xf9f9), //hay q ampliar otra fila
+        nums = int[](_0s[t % _0s.length()], _1s[t % _1s.length()]),
+        letras = int[](_As[t % _As.length()]); //, _Bs[t % _Bs.length()]); 
     
     /*
     //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; 
