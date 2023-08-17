@@ -52,7 +52,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     int t = int(iTime);
     int[] ceros = int[](0xF99F, 0x6996, 0x2552, 0x7557), 
         unos = int[](0x1111, 0x3111, 0x1311, 0x6227, 0x2627),
-        nums = int[](ceros[t % ceros.length()], unos[t % unos.length()]); 
+        _A = int[](0xf9f9, 0x69f9, 0x7575, 0x2575),
+        nums = int[](ceros[t % ceros.length()], unos[t % unos.length()]),
+        letras = int[](_A[t % _A.length()]); 
     
     /*
     //unos[int(iTime) % unos.length()]; //nums[1]; //int(iTime) % nums.length()]; 
@@ -60,7 +62,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //ceros[ceros.length() - 1];
     //ceros[int(iTime) % ceros.length()]; 
     */    
-    int dec = nums[t % nums.length()]; 
+    int dec = letras[t % letras.length()]; //_A[_A.length() - 1]; //t % _A.length()]; //nums[t % nums.length()]; 
     
     
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
