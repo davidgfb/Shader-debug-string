@@ -3,7 +3,7 @@ int potia(int x, int y) {
 }
 
 struct Byte {
-    int[4] ar_Int;
+    int[4] ar_Int; //xyzw, rgba
 };
 
 int[4] a_Ar_Noton(int dec, int base) { //SOLO para binario?
@@ -41,6 +41,10 @@ vec4 a_Vec4(Byte byte) {
     return vec4(ar_Int[0], ar_Int[1], ar_Int[2], ar_Int[3]);
 }
 
+struct V2 {
+    int x, y; //int[2] ar_Int; 
+};
+
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {   
     // Time varying pixel color
     vec3 col = (vec3(0,0,1) + vec3(1,1,1)) / 4.0;
@@ -77,8 +81,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //int[](0xf, 9, 9, 0xf) -> ar_Bin
     
     //_0, _1, _2, _3 podrian ser bool[]
-    int[] pix = int[](int(iResolution.y - fragCoord.y), int(fragCoord.x)), 
-        ar_Hex = a_Ar_Noton(dec, 16), _0 = a_Ar_Noton(ar_Hex[0], 2), 
+    V2 pix = V2(int(iResolution.y - fragCoord.y), int(fragCoord.x)); 
+    
+    int[] ar_Hex = a_Ar_Noton(dec, 16), _0 = a_Ar_Noton(ar_Hex[0], 2), 
         _1 = a_Ar_Noton(ar_Hex[1], 2), _2 = a_Ar_Noton(ar_Hex[2], 2), 
         _3 = a_Ar_Noton(ar_Hex[3], 2); //ar_Bin, ar_Bin1...
     
@@ -100,10 +105,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     //if (ar_Hex == int[](0xf, 9, 9, 0xf))
     ///*
     
-    int xPix = pix[0], yPix = pix[1]; 
+    //int xPix = pix.x, yPix = pix.y; 
+    V2 rep = V2(100, 100), //prop, escala
+        dims = V2(400, 400); //V2 rep = V2(100, 100); //100,50); 50, 50);
+    //int tamagno = 100;
     
-    if (xPix < 400 && yPix < 400)
-        col = vec3(m[xPix / 100 % 4][yPix / 100 % 4]);
+    if (pix.x < dims.x && pix.y < dims.y)
+        col = vec3(m[pix.x / rep.x % (dims.x / 100)][pix.y / rep.y % 
+            (dims.y / 100)]);
     
     //*/
     //int[] a = int[](1,2);   
