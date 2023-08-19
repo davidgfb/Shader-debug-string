@@ -2,6 +2,10 @@ int potia(int x, int y) {
     return int(pow(float(x), float(y)));
 }
 
+struct Byte {
+    int[4] ar_Int;
+};
+
 int[4] a_Ar_Noton(int dec, int base) { //SOLO para binario?
     /*
     PRE: n < 5, n € Z
@@ -31,8 +35,10 @@ int[4] separa_Decs(int dec) { //dec_A_Ar_Decs
     return int[](_0, _1, _2, _3); 
 }
 
-vec4 a_Vec4(int[4] ar) {
-    return vec4(ar[0], ar[1], ar[2], ar[3]);
+vec4 a_Vec4(Byte byte) {
+    int[] ar_Int = byte.ar_Int;
+
+    return vec4(ar_Int[0], ar_Int[1], ar_Int[2], ar_Int[3]);
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {   
@@ -81,9 +87,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
         _1 = separa_Decs(ar_Hex[1]), _2 = separa_Decs(ar_Hex[2]), 
         _3 = separa_Decs(ar_Hex[3]);  
     */
-    
-    
-    vec4[] v = vec4[](a_Vec4(_0), a_Vec4(_1), a_Vec4(_2), a_Vec4(_3));
+        
+    vec4[] v = vec4[](a_Vec4(Byte(_0)), a_Vec4(Byte(_1)), a_Vec4(Byte(_2)), 
+        a_Vec4(Byte(_3)));
       
     //vec4 _v0 = a_Vec4(_0), _v1 = a_Vec4(_1), _v2 = a_Vec4(_2), _v3 = a_Vec4(_3);
     
